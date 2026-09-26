@@ -159,7 +159,7 @@ footer{margin-top:clamp(96px,12vw,180px);border-top:1px solid var(--line);paddin
 footer .w{display:grid;gap:clamp(48px,6vw,88px)}
 
 
-.js .reveal{opacity:0;transform:translateY(16px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
 .js .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.js .reveal{transform:none}}
 
@@ -388,7 +388,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
     </div>
     <ol class="jobs">
       <li class="head" aria-hidden="true"><span>기간</span><span>회사</span><span>부서</span><span>직급</span></li>
-      <li><span class="d">2026.07 – 재직 중</span><div class="co"><b>토스씨엑스</b><span class="tag">토스 고객 경험(CX) 전문 계열사</span></div><span class="dept">운영지원</span><span class="rank">사원</span><p>AI가 일하는 방식을 바꾸는 지금, 그 변화를 가장 앞에서 실험하는 토스에서 일하고 있습니다. 토스 상담 음성 인식 AI 모델 개발 과제에서 실제 고객 상담 음성을 분석하고 학습 데이터로 정제하며, AI가 어떻게 배우고 일하는지를 현장에서 익히고 있습니다. 쌓아온 기획·콘텐츠 역량을 AI와 결합해 다음 단계의 마케팅으로 넓혀가는 중입니다.</p></li>
+      <li><span class="d">2026.07 – 재직 중</span><div class="co"><b>토스씨엑스</b><span class="tag">토스 고객 경험(CX) 전문 계열사</span></div><span class="dept">운영지원</span><span class="rank">사원</span><p>AI가 일하는 방식을 바꾸는 지금, 그 변화를 가장 앞에서 실험하는 토스에서 일하고 있습니다. 토스 상담 음성 인식 AI 모델 개발 과제에서 실제 고객 상담 음성을 분석하고 학습 데이터로 정제하며, AI가 어떻게 배우고 일하는지를 현장에서 익히고 있습니다. 이 경험을 바탕으로, 그동안 쌓아온 기획·콘텐츠 역량을 AI와 결합하는 방법을 스스로 탐구하고 있습니다.</p></li>
       <li><span class="d">2025.03 – 2026.07</span><div class="co"><b>BBWW</b><span class="tag">국내 최초 열처리 가공 나무문·가구 주문제작 목공 브랜드</span></div><span class="dept">마케팅</span><span class="rank">과장</span><p>맞춤 제작이라는 낯선 구매 경험을 글로 풀어냈습니다. 브랜드 블로그를 운영하며 주문제작 상품의 홍보 원고를 기획·작성하고, 네이버 검색광고를 집행했습니다.</p></li>
       <li><span class="d">2023.01 – 2025.03</span><div class="co"><b>춘해병원</b><span class="tag">79년 역사의 부산 종합병원</span></div><span class="dept">기획홍보실</span><span class="rank">실장</span><p>다빈치SP 로봇수술을 브랜드의 중심에 세우고 공중파·부산일보·국제신문·의학신문 노출과 버스·옥외·지하철 광고를 이끌었습니다. 홈페이지·블로그·인스타그램 운영, 진료과별 의료 칼럼과 외래 리플렛 제작까지 맡았습니다.</p></li>
       <li><span class="d">2021.04 – 2022.12</span><div class="co"><b>이유사회적협동조합</b><span class="tag">교통약자 이동 플랫폼 사회적기업</span></div><span class="dept">마케팅팀</span><span class="rank">PM</span><p>SK·부산관광공사와 협업한 샌드박스 사업을 영상으로 기록해 정규 사업화에 힘을 보탰습니다. PR·R&amp;D 사업 홍보, 뉴스레터와 보도자료, 대학생 서포터즈, 크라우드펀딩을 운영했습니다.</p></li>
@@ -413,10 +413,18 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
   document.documentElement.classList.add('js');
   const ease=t=>1-Math.pow(1-t,4);
   const count=el=>{const m=el.dataset.v.match(/^([^\d]*)([\d,]*\.?\d+)(.*)$/);const raw=m[2].replace(/,/g,''),dec=(raw.split('.')[1]||'').length,end=parseFloat(raw),comma=m[2].includes(',');
-    const t0=performance.now();const step=t=>{const p=Math.min((t-t0)/1800,1);let x=(end*ease(p)).toFixed(dec);if(comma)x=Number(x).toLocaleString('en-US');el.textContent=m[1]+x+m[3];if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)};
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);e.target.classList.add('in');if(e.target.dataset.v)count(e.target)}),{threshold:.35});
-  document.querySelectorAll('.nums b,.k b').forEach(el=>{const v=el.textContent.trim();if(/\d/.test(v)){el.dataset.v=v;el.textContent=v.replace(/\d/g,'0')}else el.classList.add('reveal');io.observe(el)});
-  document.querySelectorAll('.reveal,.bars').forEach(el=>io.observe(el));
+    const t0=performance.now();const step=t=>{const p=Math.min((t-t0)/1500,1);let x=(end*ease(p)).toFixed(dec);if(comma)x=Number(x).toLocaleString('en-US');el.textContent=m[1]+x+m[3];if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)};
+  // 1) numbers: start as soon as their group is well in view, one after another
+  const groups=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;groups.unobserve(e.target);
+    [...e.target.querySelectorAll('b')].forEach((el,i)=>setTimeout(()=>{el.classList.add('in');if(el.dataset.v)count(el)},i*260))}),{rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('.nums b,.k b').forEach(el=>{const v=el.textContent.trim();if(/\d/.test(v)){el.dataset.v=v;el.textContent=v.replace(/\d/g,'0')}else el.classList.add('reveal','num')});
+  document.querySelectorAll('.nums,.k').forEach(g=>groups.observe(g));
+  // 2) bars: slightly later than the numbers
+  const bars=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;bars.unobserve(e.target);setTimeout(()=>e.target.classList.add('in'),350)}),{rootMargin:'0px 0px -18% 0px'});
+  document.querySelectorAll('.bars').forEach(el=>bars.observe(el));
+  // 3) titles: only once they are well into the screen, so they never fire together with the numbers above
+  const titles=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;titles.unobserve(e.target);e.target.classList.add('in')}),{rootMargin:'0px 0px -30% 0px'});
+  document.querySelectorAll('.reveal:not(.num)').forEach(el=>titles.observe(el));
 })();
 </script>
 <script>
