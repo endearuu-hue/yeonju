@@ -215,6 +215,17 @@ footer .fullline strong{font-weight:500;color:var(--ink)}
 footer .sig{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)}
 footer .sig b{font:500 15px var(--display);color:var(--ink);margin-right:14px;letter-spacing:.02em}
 footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
+
+/* chapter dividers between parts */
+.chapter{display:flex;align-items:baseline;gap:16px;padding-top:clamp(96px,12vw,180px)}
+.chapter .n{font:200 clamp(48px,6vw,88px)/1 var(--display);letter-spacing:-.05em;color:var(--warm)}
+.chapter .t{font:500 15px var(--display);color:var(--ink);white-space:nowrap}
+.chapter .rule{flex:1;height:1px;background:var(--ink-2);align-self:center;opacity:.6}
+.chapter .e{font-size:12px;letter-spacing:.14em;color:var(--ink-2);white-space:nowrap}
+.chapter + .sec-head{padding-top:clamp(40px,5vw,72px)}
+#hospital{background:#151817;box-shadow:0 0 0 100vmax #151817;clip-path:inset(0 -100vmax);padding-bottom:clamp(96px,12vw,160px);margin-top:clamp(96px,12vw,160px)}
+#hospital .chapter{padding-top:clamp(64px,8vw,120px)}
+@media(max-width:700px){.chapter .e{display:none}}
 </style>
 
 <nav class="pillnav" aria-label="주요 메뉴"><div class="pill"><a class="logo" href="#top">LEE YEONJU</a><a class="l" href="#work">캠페인</a><a class="l" href="#hospital">병원 마케팅</a><a class="l" href="#career">경력</a><a class="cta" href="#p-dmo">영상 보기</a></div></nav>
@@ -242,6 +253,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
   </section>
 
   <section id="work">
+    <div class="chapter" aria-hidden="true"><span class="n">01</span><span class="t">캠페인</span><span class="rule"></span><span class="e">PART 01 / 03</span></div>
     <div class="sec-head">
       <div><p class="cap">CAMPAIGN PM</p><h2 class="reveal">설득이 필요한<br>사업을 기록하다</h2><p class="lede">기관, 스타트업, 지자체 사이에서 캠페인을 기획하고, 영상 제작부터 온오프라인 홍보, 서포터즈 운영까지 직접 이끌었습니다. 세 건이 정규 사업·정규 프로그램으로 이어졌고, 지역을 넓혀 다시 열린 행사도 있습니다.</p></div>
       <ol class="toc"><li><a href="#p-dmo"><span>DMO 포용관광 프로젝트</span><em>전국 평가 2위</em></a></li><li><a href="#p-shuttle"><span>착한셔틀</span><em>전국 정규 사업</em></a></li><li><a href="#p-bus"><span>저상버스 배리어프리 여행</span><em>저상버스 29%</em></a></li><li><a href="#p-temple"><span>반려견 동반 템플스테이</span><em>정규 편성</em></a></li><li><a href="#p-surf"><span>멍콕 도그서핑 페스티벌</span><em>최초 · 300명</em></a></li></ol>
@@ -333,8 +345,9 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
   </section>
 
   <section id="hospital">
+    <div class="chapter" aria-hidden="true"><span class="n">02</span><span class="t">병원 브랜드 마케팅</span><span class="rule"></span><span class="e">PART 02 / 03</span></div>
     <div class="sec-head">
-      <div><p class="cap">HOSPITAL BRAND MARKETING</p><h2 class="reveal">79년 된 병원을<br>젊게, 춘해병원</h2><p class="lede">역사 깊은 병원이라는 이미지 대신, 병원장의 다빈치 SP 단일공 로봇수술을 브랜드의 중심에 뒀습니다. 홈페이지, 블로그, 보도자료, 인쇄물, 공간까지 환자가 병원을 만나는 모든 접점을 맡았습니다.</p></div>
+      <div><p class="cap">PLANNING &amp; PR · 2023–2025</p><h2 class="reveal">79년 된 병원을<br>젊게, 춘해병원</h2><p class="lede">역사 깊은 병원이라는 이미지 대신, 병원장의 다빈치 SP 단일공 로봇수술을 브랜드의 중심에 뒀습니다. 홈페이지, 블로그, 보도자료, 인쇄물, 공간까지 환자가 병원을 만나는 모든 접점을 맡았습니다.</p></div>
       <ol class="toc"><li><a href="#h-web"><span>브랜드 홈페이지</span><em>로봇수술 600례</em></a></li><li><a href="#h-blog"><span>브랜드 블로그</span><em>월 조회수 3,065</em></a></li><li><a href="#h-press"><span>보도자료</span><em>매체 4곳</em></a></li><li><a href="#h-print"><span>책자와 리플렛</span><em>지침서 · 리플렛</em></a></li><li><a href="#h-space"><span>공간 브랜딩</span><em>로고 리뉴얼</em></a></li></ol>
     </div>
 
@@ -368,6 +381,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
   </section>
 
   <section id="career" class="career">
+    <div class="chapter" aria-hidden="true"><span class="n">03</span><span class="t">경력</span><span class="rule"></span><span class="e">PART 03 / 03</span></div>
     <div class="sec-head solo">
       <div><p class="cap">CAREER</p><h2 class="reveal">경력</h2><p class="lede">사회적기업과 병원 기획홍보실, 브랜드 마케팅을 거쳐 지금은 AI 데이터의 현장까지. 기획부터 집행, 직접 제작까지 마케팅의 전 과정을 다뤄왔습니다.</p></div>
       
