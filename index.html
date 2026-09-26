@@ -35,12 +35,12 @@ nav a{text-decoration:none}nav a:hover{color:var(--ink)}
 /* hero */
 .hero{position:relative;margin-top:8px}
 .hero .frame{position:relative;aspect-ratio:21/9;max-height:78vh;width:100%;overflow:hidden}
-.hero .frame img{height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05)}
+.hero .frame img{height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05);animation:settle 2.6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes settle{from{transform:scale(1.08)}to{transform:none}}
 .hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,14,14,.1) 30%,rgba(13,14,14,.92) 100%)}
 .hero .copy{position:absolute;left:0;right:0;bottom:clamp(20px,5vw,64px);z-index:1}
 .hero h1{font:200 clamp(30px,5.4vw,80px)/1.18 var(--display);letter-spacing:-.04em}
 .hero h1 strong{font-weight:600}
-.hero h1 span{display:block}
 .hero .cap{margin-bottom:18px}
 @media(max-width:700px){.hero .frame{aspect-ratio:4/5}}
 
@@ -183,6 +183,14 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
   .work .txt,.work.flip .txt{order:-1}
   .work .txt::before{content:counter(work,decimal-leading-zero) " / 05";display:block;font:500 12px var(--sans);letter-spacing:.14em;color:var(--warm);margin-bottom:8px}
 }
+
+/* hero title: line-by-line rise */
+.hero h1 .l{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .l > span{display:inline-block;animation:rise 1.1s cubic-bezier(.2,.75,.2,1) both;animation-delay:calc(var(--i) * 140ms + 150ms)}
+@keyframes rise{from{transform:translateY(105%);opacity:0}to{transform:none;opacity:1}}
+.hero .fadein{animation:fadein 1s ease both;animation-delay:.9s}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:700px){.hero h1 .l{display:block}.hero h1 br.d{display:none}}
 </style>
 
 <nav><div class="w"><b>LEE YEONJU</b><ul><li><a href="#work">작업</a></li><li><a href="#hospital">병원 마케팅</a></li><li><a href="#career">경력</a></li></ul></div></nav>
@@ -190,8 +198,8 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
 <header class="hero">
   <div class="frame"><img src="img/st_bus2.jpg" alt="저상버스에서 내려 인도로 나서는 전동휠체어"></div>
   <div class="copy w">
-    <p class="cap">CONTENT MARKETING PM · BUSAN</p>
-    <h1><span>영상 한 편으로 <strong>정규 사업</strong>을 만든</span><span>콘텐츠 마케터</span></h1>
+    <p class="cap fadein" style="animation-delay:.1s">CONTENT MARKETING PM · BUSAN</p>
+    <h1><span class="l"><span style="--i:0">영상 한 편으로</span></span> <span class="l"><span style="--i:1"><strong>정규 사업</strong>을 만든</span></span><br class="d"><span class="l"><span style="--i:2">콘텐츠 마케터</span></span></h1>
   </div>
 </header>
 
