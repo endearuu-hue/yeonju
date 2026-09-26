@@ -57,10 +57,20 @@ nav a{text-decoration:none}nav a:hover{color:var(--ink)}
 @media(max-width:820px){.nums{grid-template-columns:1fr 1fr}.nums div:nth-child(3){padding-left:0;border-left:0}.nums div:nth-child(n+3){border-top:1px solid var(--line)}}
 
 /* section heads */
-.sec-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 80px;align-items:end;padding-top:clamp(96px,12vw,180px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px 96px;align-items:end;padding-top:clamp(96px,12vw,180px)}
+.sec-head.solo{grid-template-columns:1fr}
 .sec-head h2{font:300 clamp(34px,5vw,72px)/1.15 var(--display);letter-spacing:-.045em;margin-top:14px}
-.sec-head p{color:var(--ink-2);max-width:44em}
-@media(max-width:820px){.sec-head{grid-template-columns:1fr}}
+.sec-head .lede{margin-top:28px;font-size:clamp(16px,1.3vw,18px);line-height:1.85;color:var(--body);max-width:34em}
+@media(max-width:900px){.sec-head{grid-template-columns:1fr}}
+[id]{scroll-margin-top:80px}
+.toc{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink-2);align-self:end}
+.toc a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:15px 2px;border-bottom:1px solid var(--line);text-decoration:none;font-size:15px;transition:padding .35s cubic-bezier(.2,.7,.2,1)}
+.toc em{font-style:normal;font-size:13px;color:var(--ink-2);white-space:nowrap;transition:color .3s}
+.toc em::after{content:" →";opacity:0;transition:opacity .3s}
+.toc a:hover{padding-left:10px}
+.toc a:hover em{color:var(--warm)}
+.toc a:hover em::after{opacity:1}
+
 
 /* project */
 .proj{padding-top:clamp(72px,10vw,140px)}
@@ -190,11 +200,11 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
 
   <section id="work">
     <div class="sec-head">
-      <div><p class="cap">SOCIAL IMPACT FILMS</p><h2 class="reveal">설득이 필요한<br>사업을 기록하다</h2></div>
-      <p>기관, 스타트업, 지자체 사이에서 사업의 과정을 밀착 취재하고 이야기로 엮었습니다. 세 건이 정규 사업·정규 프로그램으로 이어졌고, 지역을 넓혀 다시 열린 행사도 있습니다.</p>
+      <div><p class="cap">SOCIAL IMPACT FILMS</p><h2 class="reveal">설득이 필요한<br>사업을 기록하다</h2><p class="lede">기관, 스타트업, 지자체 사이에서 사업의 과정을 밀착 취재하고 이야기로 엮었습니다. 세 건이 정규 사업·정규 프로그램으로 이어졌고, 지역을 넓혀 다시 열린 행사도 있습니다.</p></div>
+      <ol class="toc"><li><a href="#p-dmo"><span>DMO 포용관광 프로젝트</span><em>전국 평가 2위</em></a></li><li><a href="#p-shuttle"><span>착한셔틀</span><em>전국 정규 사업</em></a></li><li><a href="#p-bus"><span>저상버스 배리어프리 여행</span><em>저상버스 29%</em></a></li><li><a href="#p-temple"><span>반려견 동반 템플스테이</span><em>정규 편성</em></a></li><li><a href="#p-surf"><span>멍콕 도그서핑 페스티벌</span><em>최초 · 300명</em></a></li></ol>
     </div>
 
-    <article class="proj">
+    <article class="proj" id="p-dmo">
       <div class="proj-top"><h3 class="reveal">DMO 포용관광 프로젝트</h3><p class="cap">부산관광공사 × 이유사회적협동조합</p></div>
       <a class="film" href="https://youtu.be/VJUTnkIpMIE" target="_blank" rel="noopener" aria-label="유튜브에서 활동 결과 영상 보기"><img src="img/yt_dmo.jpg" alt="포용관광 프로젝트 참가자 단체 사진"><span class="play"><i></i>활동 결과 영상 보기</span></a>
       <div class="stills"><img src="img/st_dmo1.jpg" alt="공원 길을 지나는 전동휠체어"><img src="img/st_dmo2.jpg" alt="행사장에 입장하는 참가자들"><img src="img/st_dmo3.jpg" alt="서포터즈 회의 장면"></div>
@@ -208,7 +218,7 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
       </div>
     </article>
 
-    <article class="proj">
+    <article class="proj" id="p-shuttle">
       <div class="proj-top"><h3 class="reveal">착한셔틀</h3><p class="cap">SKT 사회공헌팀 × 이유사회적협동조합</p></div>
       <a class="film" href="https://youtu.be/XBfx55lfSss" target="_blank" rel="noopener" aria-label="유튜브에서 착한셔틀 예고편 보기"><img src="img/yt_shuttle.jpg" alt="착한셔틀 영상 썸네일, 꾸준한 출퇴근이 불가능한 당신에게"><span class="play"><i></i>프로젝트 예고편 보기</span></a>
       <div class="stills"><img src="img/st_shuttle1.jpg" alt="밤길에 출발을 준비하는 셔틀"><img src="img/st_shuttle2.jpg" alt="회의 중인 이유사회적협동조합 대표"><img src="img/st_shuttle3.jpg" alt="착한셔틀 차량 로고"></div>
@@ -222,7 +232,7 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
       </div>
     </article>
 
-    <article class="proj">
+    <article class="proj" id="p-bus">
       <div class="proj-top"><h3 class="reveal">저상버스를 타고 떠나는 배리어프리 여행</h3><p class="cap">장애인의 날 기획</p></div>
       <a class="film" href="https://youtu.be/jT8bK6KbUJI" target="_blank" rel="noopener" aria-label="유튜브에서 저상버스 현장 체험 영상 보기"><img src="img/yt_bus.jpg" alt="저상버스 휠체어석의 참가자, 우리는 각자의 속도로 삶을 살아간다"><span class="play"><i></i>현장 체험 영상 보기</span></a>
       <div class="stills"><img src="img/st_bus1.jpg" alt="저상버스 경사판으로 내리는 휠체어"><img src="img/st_bus2.jpg" alt="정류장에 내린 참가자"><img src="img/st_bus3.jpg" alt="영도 바닷가에 도착한 모습"></div>
@@ -248,7 +258,7 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
       </div>
     </article>
 
-    <article class="proj">
+    <article class="proj" id="p-temple">
       <div class="proj-top"><h3 class="reveal">반려견 동반 템플스테이 ‘멍콕’</h3><p class="cap">비바인사이트 × 홍법사</p></div>
       <a class="film" href="https://youtu.be/Z-RYLUqzkK4" target="_blank" rel="noopener" aria-label="유튜브에서 템플스테이 후기 영상 보기"><img src="img/yt_temple.jpg" alt="홍법사에서 반려견을 안은 참가자들과 스님"><span class="play"><i></i>후기 영상 보기</span></a>
       <div class="stills"><img src="img/st_temple1.jpg" alt="불상 앞 잔디밭의 참가자와 반려견"><img src="img/st_temple2.jpg" alt="반려견과 함께 걷는 참가자들"><img src="img/st_temple3.jpg" alt="잔디 위의 흰 반려견"></div>
@@ -261,7 +271,7 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
       </div>
     </article>
 
-    <article class="proj">
+    <article class="proj" id="p-surf">
       <div class="proj-top"><h3 class="reveal">멍콕 도그서핑 페스티벌</h3><p class="cap">멍콕 · 비바인사이트</p></div>
       <div class="films">
         <a class="film" href="https://youtu.be/ACcatgv4EhQ" target="_blank" rel="noopener" aria-label="유튜브에서 2023 다대포 영상 보기"><img src="img/yt_surf1.jpg" alt="서핑 슈트를 입은 골든리트리버, 2023 다대포"><span class="play"><i></i>2023 다대포</span></a>
@@ -281,43 +291,43 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
 
   <section id="hospital">
     <div class="sec-head">
-      <div><p class="cap">HOSPITAL BRAND MARKETING</p><h2 class="reveal">70년 된 병원을<br>젊게, 춘해병원</h2></div>
-      <p>역사 깊은 병원이라는 이미지 대신, 병원장의 다빈치 SP 단일공 로봇수술을 브랜드의 중심에 뒀습니다. 홈페이지, 블로그, 보도자료, 인쇄물, 공간까지 환자가 병원을 만나는 모든 접점을 맡았습니다.</p>
+      <div><p class="cap">HOSPITAL BRAND MARKETING</p><h2 class="reveal">70년 된 병원을<br>젊게, 춘해병원</h2><p class="lede">역사 깊은 병원이라는 이미지 대신, 병원장의 다빈치 SP 단일공 로봇수술을 브랜드의 중심에 뒀습니다. 홈페이지, 블로그, 보도자료, 인쇄물, 공간까지 환자가 병원을 만나는 모든 접점을 맡았습니다.</p></div>
+      <ol class="toc"><li><a href="#h-web"><span>브랜드 홈페이지</span><em>로봇수술 600례</em></a></li><li><a href="#h-blog"><span>브랜드 블로그</span><em>월 조회수 3,065</em></a></li><li><a href="#h-press"><span>보도자료</span><em>매체 4곳</em></a></li><li><a href="#h-print"><span>책자와 리플렛</span><em>지침서 · 리플렛</em></a></li><li><a href="#h-space"><span>공간 브랜딩</span><em>로고 리뉴얼</em></a></li></ol>
     </div>
 
-    <article class="work">
+    <article class="work" id="h-web">
       <div class="g"><img src="img/p7_0.jpg" alt="춘해병원 홈페이지 메인, 다빈치 SP 로봇수술 배너"></div>
       <div class="txt"><p class="cap">WEBSITE</p><h3>브랜드 홈페이지</h3><p>로봇수술 랜딩페이지를 기획하고 사용하기 쉬운 화면을 설계했습니다. 공지사항에 실을 보도자료도 직접 썼습니다.</p>
         <div class="k"><div><b>600례</b><small>다빈치 SP 로봇수술 달성 홍보</small></div></div></div>
     </article>
 
-    <article class="work flip">
+    <article class="work flip" id="h-blog">
       <div class="txt"><p class="cap">NAVER BLOG · SEO</p><h3>브랜드 블로그</h3><p>병명을 검색한 사람이 건강 정보와 함께 병원을 발견하도록 콘텐츠를 기획하고 네이버 검색에 맞춰 최적화했습니다. 병원 내부 소식으로 환자에게는 신뢰를, 직원에게는 자부심을 더했습니다.</p>
         <div class="k"><div><b>3,065</b><small>월 조회수 (2024.12)</small></div><div><b>3.3%</b><small>월 재방문율 (2024.12)</small></div></div></div>
       <div class="g g-blog"><img class="main" src="img/p8_1.jpg" alt="춘해병원 블로그 게시물 목록"><img src="img/p8_2.jpg" alt="조회수 그래프"><img src="img/p8_3.jpg" alt="재방문율 그래프"></div>
     </article>
 
-    <article class="work">
+    <article class="work" id="h-press">
       <div class="g g-press"><img src="img/p9_0.jpg" alt="부산일보 기사: 다빈치SP 로봇 수술 500례 달성"><img src="img/p9_1.jpg" alt="부산일보 기사: 국내 최초 단일공 로봇 자궁근종 선택 제거"><img src="img/p9_2.jpg" alt="코메디닷컴 기사"><img src="img/p9_4.jpg" alt="네이버 뉴스 검색 결과"></div>
       <div class="txt"><p class="cap">PRESS</p><h3>보도자료 작성 및 배포</h3><p>자궁 분야 보도자료를 직접 써서 배포했고, ‘춘해병원’을 검색하면 로봇수술 기사가 함께 노출되도록 기획했습니다.</p>
         <div class="k"><div><b>4곳</b><small>부산일보 · 파이낸셜뉴스 · 코메디닷컴 · 경상일보</small></div></div></div>
     </article>
 
-    <article class="work flip">
+    <article class="work flip" id="h-print">
       <div class="txt"><p class="cap">PRINT</p><h3>책자와 리플렛</h3><p>진료 후에도 환자가 스스로 건강을 관리할 수 있는 자가운동 지침서와 입원생활안내, 로봇수술 홍보물을 디자인했습니다.</p></div>
       <div class="g g-print"><img src="img/p10_0.jpg" alt="입원생활안내 리플렛"><img src="img/p10_1.jpg" alt="어깨 관리 지침서"><img src="img/p10_4.jpg" alt="로봇수술 500례 홍보물"><img src="img/p10_2.jpg" alt="허리 운동법"></div>
     </article>
 
-    <article class="work">
+    <article class="work" id="h-space">
       <div class="g g-space"><img src="img/p11_0.jpg" alt="로봇수술 안내 게시물과 복도"><img src="img/p11_1.jpg" alt="병원 외관 야경"><img src="img/p11_2.jpg" alt="민트색 띠지를 적용한 출입구"></div>
       <div class="txt"><p class="cap">SPACE</p><h3>로고 리뉴얼에 맞춘 공간 기획</h3><p>새 로고의 민트 컬러로 유리창 띠지와 복도 게시물을 통일해, 방문객이 브랜드를 한눈에 알아보도록 했습니다.</p></div>
     </article>
   </section>
 
   <section id="career" class="career">
-    <div class="sec-head">
-      <div><p class="cap">CAREER</p><h2 class="reveal">경력</h2></div>
-      <p>인하우스 홍보팀과 사회적기업, 브랜드 마케팅을 거치며 기획부터 집행, 직접 제작까지 해왔습니다.</p>
+    <div class="sec-head solo">
+      <div><p class="cap">CAREER</p><h2 class="reveal">경력</h2><p class="lede">인하우스 홍보팀과 사회적기업, 브랜드 마케팅을 거치며 기획부터 집행, 직접 제작까지 해왔습니다.</p></div>
+      
     </div>
     <ol>
       <li><span class="d">2026.07 – 재직 중</span><div><b>토스씨엑스</b><span class="m">사원 · 데이터라벨링</span></div><p>토스 상담 음성 인식 AI 모델 개발 과제에서 실제 고객 상담 음성 데이터를 분석하고 학습용으로 가공</p></li>
