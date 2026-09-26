@@ -226,6 +226,59 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
 #hospital{background:#151817;box-shadow:0 0 0 100vmax #151817;clip-path:inset(0 -100vmax);padding-bottom:clamp(96px,12vw,160px);margin-top:clamp(96px,12vw,160px)}
 #hospital .chapter{padding-top:clamp(64px,8vw,120px)}
 @media(max-width:700px){.chapter .e{display:none}}
+
+/* ===== mobile fit ===== */
+.sk summary{list-style:none;cursor:default}
+.sk summary::-webkit-details-marker{display:none}
+@media(max-width:700px){
+  html{scroll-snap-type:y proximity}
+  header.hero,.proj,.work,.chapter,footer,.nums,#career .sec-head{scroll-snap-align:start;scroll-margin-top:78px}
+  header.hero{scroll-margin-top:0}
+  .proj{padding-top:20px;margin-top:40px}
+  .proj-top{margin-bottom:16px}
+  .proj-top h3{font-size:28px}
+  .stills,.films{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:6px;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,4vw,64px));padding-inline:clamp(16px,4vw,64px)}
+  .stills::-webkit-scrollbar,.films::-webkit-scrollbar{display:none}
+  .stills img{flex:0 0 72%;scroll-snap-align:start}
+  .films .film{flex:0 0 86%;scroll-snap-align:start}
+  .swipe{display:block;margin-top:8px;font-size:11px;letter-spacing:.12em;color:var(--ink-2)}
+  .detail{padding-top:24px;gap:20px}
+  .detail dl{grid-template-columns:1fr 1fr;gap:12px}
+  .story p{font-size:15px;line-height:1.75}
+  .story p+p{margin-top:10px}
+  .k{gap:14px}
+  .k b{font-size:40px}
+  .clip{margin-top:20px;padding:18px}
+  .clip-sub{display:none}
+  .clip-h{font-size:18px;margin-top:8px}
+  .clip-more{margin-top:12px}
+  .bars .row{margin-top:6px}
+  .sk{border-top:1px solid var(--line)}
+  .skills>.sk+.sk{border-left:0;padding-left:0;margin-top:0}
+  .skills>.sk{padding:0}
+  .sk summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+  .sk summary::after{content:"+";font:200 26px/1 var(--display);color:var(--ink-2);transition:transform .3s}
+  .sk[open] summary::after{transform:rotate(45deg)}
+  .sk ul{margin:0 0 18px}
+  .skills{margin-top:40px}
+}
+@media(min-width:701px){.swipe{display:none}}
+@media(max-width:700px){
+  .proj-top .cap{display:none}
+  .stills img{flex:0 0 auto;width:54%;height:auto}
+  .films .film{flex:0 0 auto;width:86%}
+  .clip{padding:14px 16px}
+  .clip-label,.clip-src{display:inline;font-size:11px}
+  .clip-src{margin-left:8px}
+  .clip-h{font-size:16px;line-height:1.45}
+  .clip-h br{display:none}
+  .clip-more{margin-top:8px;font-size:12px}
+  .bars{display:none}
+  .jobs p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:14px}
+  .jobs li{padding-block:18px}
+  #career .sec-head{padding-top:28px}
+}
+
 </style>
 
 <nav class="pillnav" aria-label="주요 메뉴"><div class="pill"><a class="logo" href="#top">LEE YEONJU</a><a class="l" href="#work">캠페인</a><a class="l" href="#hospital">병원 마케팅</a><a class="l" href="#career">경력</a><a class="cta" href="#p-dmo">영상 보기</a></div></nav>
@@ -263,6 +316,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
       <div class="proj-top"><h3 class="reveal">DMO 포용관광 프로젝트</h3><p class="cap">부산관광공사 × 이유사회적협동조합</p></div>
       <a class="film" href="https://youtu.be/VJUTnkIpMIE" target="_blank" rel="noopener" aria-label="유튜브에서 활동 결과 영상 보기"><img src="img/yt_dmo.jpg" alt="포용관광 프로젝트 참가자 단체 사진"><span class="play"><i></i>활동 결과 영상 보기</span></a>
       <div class="stills"><img src="img/st_dmo1.jpg" alt="공원 길을 지나는 전동휠체어"><img src="img/st_dmo2.jpg" alt="행사장에 입장하는 참가자들"><img src="img/st_dmo3.jpg" alt="서포터즈 회의 장면"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
       <div class="detail">
         <dl><div><dt>ROLE</dt><dd>PM · 캠페인 기획<br>영상 제작 · 온오프라인 홍보<br>대학생 서포터즈 운영</dd></div><div><dt>PARTNER</dt><dd>부산관광공사<br>이유사회적협동조합</dd></div></dl>
         <div class="story">
@@ -277,6 +331,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
       <div class="proj-top"><h3 class="reveal">착한셔틀</h3><p class="cap">SKT 사회공헌팀 × 이유사회적협동조합</p></div>
       <a class="film" href="https://youtu.be/XBfx55lfSss" target="_blank" rel="noopener" aria-label="유튜브에서 착한셔틀 예고편 보기"><img src="img/yt_shuttle.jpg" alt="착한셔틀 영상 썸네일, 꾸준한 출퇴근이 불가능한 당신에게"><span class="play"><i></i>프로젝트 예고편 보기</span></a>
       <div class="stills"><img src="img/st_shuttle1.jpg" alt="밤길에 출발을 준비하는 셔틀"><img src="img/st_shuttle2.jpg" alt="회의 중인 이유사회적협동조합 대표"><img src="img/st_shuttle3.jpg" alt="착한셔틀 차량 로고"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
       <div class="detail">
         <dl><div><dt>ROLE</dt><dd>PM · 캠페인 기획<br>영상 제작 · 온오프라인 홍보</dd></div><div><dt>PARTNER</dt><dd>SKT 사회공헌팀<br>이유사회적협동조합</dd></div></dl>
         <div class="story">
@@ -291,6 +346,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
       <div class="proj-top"><h3 class="reveal">저상버스를 타고 떠나는 배리어프리 여행</h3><p class="cap">장애인의 날 기획</p></div>
       <a class="film" href="https://youtu.be/jT8bK6KbUJI" target="_blank" rel="noopener" aria-label="유튜브에서 저상버스 현장 체험 영상 보기"><img src="img/yt_bus.jpg" alt="저상버스 휠체어석의 참가자, 우리는 각자의 속도로 삶을 살아간다"><span class="play"><i></i>현장 체험 영상 보기</span></a>
       <div class="stills"><img src="img/st_bus1.jpg" alt="저상버스 경사판으로 내리는 휠체어"><img src="img/st_bus2.jpg" alt="정류장에 내린 참가자"><img src="img/st_bus3.jpg" alt="영도 바닷가에 도착한 모습"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
       <div class="detail">
         <dl><div><dt>ROLE</dt><dd>PM · 캠페인 기획<br>영상 제작 · 온오프라인 홍보</dd></div><div><dt>ROUTE</dt><dd>센텀시티 →<br>영도 국립해양박물관</dd></div></dl>
         <div class="story">
@@ -317,6 +373,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
       <div class="proj-top"><h3 class="reveal">반려견 동반 템플스테이 ‘멍콕’</h3><p class="cap">비바인사이트 × 홍법사</p></div>
       <a class="film" href="https://youtu.be/Z-RYLUqzkK4" target="_blank" rel="noopener" aria-label="유튜브에서 템플스테이 후기 영상 보기"><img src="img/yt_temple.jpg" alt="홍법사에서 반려견을 안은 참가자들과 스님"><span class="play"><i></i>후기 영상 보기</span></a>
       <div class="stills"><img src="img/st_temple1.jpg" alt="불상 앞 잔디밭의 참가자와 반려견"><img src="img/st_temple2.jpg" alt="반려견과 함께 걷는 참가자들"><img src="img/st_temple3.jpg" alt="잔디 위의 흰 반려견"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
       <div class="detail">
         <dl><div><dt>ROLE</dt><dd>영상 기획 · 제작</dd></div><div><dt>PARTNER</dt><dd>비바인사이트<br>홍법사</dd></div></dl>
         <div class="story">
@@ -333,6 +390,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
         <a class="film" href="https://youtu.be/LUkVODzjv7U" target="_blank" rel="noopener" aria-label="유튜브에서 2025 울산 비치 멍스플래쉬 영상 보기"><img src="img/yt_surf2.jpg" alt="카약 위 코기 두 마리, 2025 울산 비치 멍스플래쉬"><span class="play"><i></i>2025 울산</span></a>
       </div>
       <div class="stills"><img src="img/st_surf12.jpg" alt="서핑보드 위에 선 반려견"><img src="img/st_surf21.jpg" alt="패들보드 위에 앉은 반려견"><img src="img/st_surf23.jpg" alt="구명조끼를 입고 헤엄치는 반려견"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
       <div class="detail">
         <dl><div><dt>ROLE</dt><dd>영상 기획 · 제작</dd></div><div><dt>WHERE</dt><dd>2023 부산 다대포<br>2025 울산 솔개해수욕장</dd></div></dl>
         <div class="story">
@@ -394,9 +452,9 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
       <li><span class="d">2021.04 – 2022.12</span><div class="co"><b>이유사회적협동조합</b><span class="tag">교통약자 이동 플랫폼 사회적기업</span></div><span class="dept">마케팅팀</span><span class="rank">PM</span><p>SK·부산관광공사와 협업한 샌드박스 사업을 영상으로 기록해 정규 사업화에 힘을 보탰습니다. PR·R&amp;D 사업 홍보, 뉴스레터와 보도자료, 대학생 서포터즈, 크라우드펀딩을 운영했습니다.</p></li>
     </ol>
     <div class="skills">
-      <div><h3>콘텐츠 기획</h3><ul><li>타깃 분석 기반 메시지·스토리라인 설계</li><li>정책 제안·사업 설득을 위한 영상 기획</li><li>지자체·기업·공공기관 협업 콘텐츠 기획</li><li>반려견 동반 행사·프로그램 콘텐츠 기획</li><li>진료과별 의료 칼럼 기획 및 작성</li><li>보도자료·뉴스레터 기획 및 작성</li></ul></div>
-      <div><h3>영상·디자인 제작</h3><ul><li>인터뷰·현장 다큐멘터리 촬영과 편집</li><li>사업 결과·예고편·후기 영상 제작</li><li>의료진 책자·외래 리플렛 디자인</li><li>로봇수술 성과 홍보물·게시물 디자인</li><li>유리창 띠지·실사물 디자인과 시공 기획</li><li>홈페이지 랜딩페이지 기획</li></ul></div>
-      <div><h3>채널·매체 운영</h3><ul><li>네이버 블로그 운영과 검색 최적화(SEO)</li><li>홈페이지·인스타그램 콘텐츠 운영</li><li>공중파·일간지·의학 전문지 언론 대응</li><li>버스·옥외·지하철 광고 집행</li><li>네이버 검색광고 집행</li><li>대학생 서포터즈·크라우드펀딩 운영</li></ul></div>
+      <details class="sk" open><summary><h3>콘텐츠 기획</h3></summary><ul><li>타깃 분석 기반 메시지·스토리라인 설계</li><li>정책 제안·사업 설득을 위한 영상 기획</li><li>지자체·기업·공공기관 협업 콘텐츠 기획</li><li>반려견 동반 행사·프로그램 콘텐츠 기획</li><li>진료과별 의료 칼럼 기획 및 작성</li><li>보도자료·뉴스레터 기획 및 작성</li></ul></details>
+      <details class="sk" open><summary><h3>영상·디자인 제작</h3></summary><ul><li>인터뷰·현장 다큐멘터리 촬영과 편집</li><li>사업 결과·예고편·후기 영상 제작</li><li>의료진 책자·외래 리플렛 디자인</li><li>로봇수술 성과 홍보물·게시물 디자인</li><li>유리창 띠지·실사물 디자인과 시공 기획</li><li>홈페이지 랜딩페이지 기획</li></ul></details>
+      <details class="sk" open><summary><h3>채널·매체 운영</h3></summary><ul><li>네이버 블로그 운영과 검색 최적화(SEO)</li><li>홈페이지·인스타그램 콘텐츠 운영</li><li>공중파·일간지·의학 전문지 언론 대응</li><li>버스·옥외·지하철 광고 집행</li><li>네이버 검색광고 집행</li><li>대학생 서포터즈·크라우드펀딩 운영</li></ul></details>
     </div>
   </section>
 </div>
@@ -433,4 +491,8 @@ addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>innerHeight*.
 if(!('IntersectionObserver' in window))return;
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
 ['work','hospital','career'].forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});})();
+</script>
+<script>
+(()=>{const m=matchMedia('(max-width:700px)');const set=()=>document.querySelectorAll('.sk').forEach(d=>d.open=!m.matches);set();m.addEventListener('change',set);
+document.querySelectorAll('.sk summary').forEach(su=>su.addEventListener('click',e=>{if(!m.matches)e.preventDefault()}));})();
 </script>
