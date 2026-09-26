@@ -102,8 +102,17 @@ nav a{text-decoration:none}nav a:hover{color:var(--ink)}
 .bars .row.hl .bar i{background:var(--warm)}
 .bars .row span:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .js .bars:not(.in) .bar i{transform:scaleX(0)}
-.src{margin-top:24px;display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;font-size:13px;color:var(--ink-2);max-width:40em}
-.src img{opacity:.85}
+.clip{display:block;margin-top:32px;max-width:40em;padding:28px 28px 24px;background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--ink);text-decoration:none;transition:border-color .3s}
+.clip:hover{border-color:var(--ink-2);border-top-color:var(--warm)}
+.clip>span{display:block}
+.clip-label{font-size:12px;letter-spacing:.14em;color:var(--warm)}
+.clip-src{margin-top:10px;font-size:13px;color:var(--ink-2)}
+.clip-h{margin-top:14px;font:500 clamp(20px,2vw,26px)/1.4 var(--display);letter-spacing:-.03em;color:var(--ink)}
+.clip-sub{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:6px;font-size:14px;color:var(--body)}
+.clip-sub span{display:block;padding-left:18px;position:relative}
+.clip-sub span::before{content:"";position:absolute;left:0;top:.8em;width:8px;height:1px;background:var(--ink-2)}
+.clip-more{margin-top:20px;font-size:13px;color:var(--ink-2)}
+.clip:hover .clip-more{color:var(--ink)}
 
 /* hospital works */
 .work{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:32px 64px;padding-top:clamp(64px,8vw,112px);align-items:start}
@@ -227,7 +236,13 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
             <div class="row hl"><span>부산</span><div class="bar"><i style="width:29%"></i></div><span>29%</span></div>
             <div class="row"><span>전국 평균</span><div class="bar"><i style="width:27.8%"></i></div><span>27.8%</span></div>
           </div>
-          <div class="src"><img src="img/p4_1.jpg" alt="부산일보 기사 제목"><span>기획 출발점 — 부산일보 「탈 수 있는 시내버스 29%… 이동권 막힌 부산 장애인」</span></div>
+          <a class="clip" href="https://www.busan.com/view/busan/view.php?code=2022032819441194224" target="_blank" rel="noopener">
+            <span class="clip-label">기획 출발점</span>
+            <span class="clip-src">부산일보 · 2022.03.28 · 나웅기 기자</span>
+            <span class="clip-h">탈 수 있는 시내버스 29%…<br>이동권 막힌 부산 장애인</span>
+            <span class="clip-sub"><span>서울 66%·대구 48%에 비해 저조</span><span>노선 144개 중 73개에만 저상버스 운행</span><span>언덕 운행 불편을 이유로 교체 기피</span></span>
+            <span class="clip-more">기사 원문 보기 ↗</span>
+          </a>
         </div>
         <div class="k"><div><b>29%</b><small>부산 시내버스 중 저상버스</small></div><div><b>728대</b><small>2,517대 중 휠체어 탑승 가능</small></div></div>
       </div>
