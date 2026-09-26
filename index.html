@@ -172,6 +172,17 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
 .js .reveal{opacity:0;transform:translateY(16px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
 .js .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.js .reveal{transform:none}}
+
+/* mobile: clear project boundaries */
+#work{counter-reset:proj}
+#hospital{counter-reset:work}
+@media(max-width:900px){
+  .proj{counter-increment:proj;margin-top:72px;padding-top:28px;border-top:1px solid var(--ink-2)}
+  .proj-top::before{content:counter(proj,decimal-leading-zero) " / 05";display:block;width:100%;font:500 12px var(--sans);letter-spacing:.14em;color:var(--warm)}
+  .work{counter-increment:work;margin-top:56px;padding-top:28px;border-top:1px solid var(--ink-2)}
+  .work .txt,.work.flip .txt{order:-1}
+  .work .txt::before{content:counter(work,decimal-leading-zero) " / 05";display:block;font:500 12px var(--sans);letter-spacing:.14em;color:var(--warm);margin-bottom:8px}
+}
 </style>
 
 <nav><div class="w"><b>LEE YEONJU</b><ul><li><a href="#work">작업</a></li><li><a href="#hospital">병원 마케팅</a></li><li><a href="#career">경력</a></li></ul></div></nav>
