@@ -47,7 +47,7 @@ h1,h2,h3,p{margin:0}
 .hero h1 .l{display:block;overflow:hidden}
 .hero h1 .l>span{display:inline-block;animation:up .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*120ms)}
 @keyframes up{from{transform:translateY(100%);opacity:0}to{transform:none;opacity:1}}
-.hero .sub{margin-top:22px;font-size:clamp(17px,2vw,19px);color:var(--ink-2);max-width:32em;animation:fade 1s ease .5s both}
+.hero .sub{margin-top:24px;font-size:clamp(17px,2vw,19px);line-height:1.75;color:var(--ink-2);max-width:none;animation:fade 1s ease .5s both}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* stat cards */
@@ -63,7 +63,9 @@ h1,h2,h3,p{margin:0}
 .sec{padding-block:clamp(88px,12vw,140px) 0}
 .eyebrow{font-size:14px;font-weight:500;color:var(--ink-2)}
 .sec h2{margin-top:10px;font-family:var(--display);font-size:clamp(28px,4.2vw,44px);font-weight:600;line-height:1.32;letter-spacing:-.035em}
-.sec .lead{margin-top:14px;font-size:17px;color:var(--ink-2);max-width:34em}
+.sec .lead{margin-top:16px;font-size:17px;line-height:1.75;color:var(--ink-2);max-width:none}
+.ln{display:block}
+.hero .sub .ln,.sec .lead .ln{text-wrap:pretty}
 .sec-body{margin-top:clamp(32px,5vw,48px)}
 
 /* campaign cards */
@@ -219,7 +221,7 @@ html{scroll-snap-type:y proximity}
 <section class="hero w">
   <span class="hello">콘텐츠 마케팅 PM · 부산</span>
   <h1><span class="l"><span style="--i:0">영상 한 편으로</span></span><span class="l"><span style="--i:1"><em>정규 사업</em>을 만든</span></span><span class="l"><span style="--i:2">콘텐츠 마케터 이연주입니다</span></span></h1>
-  <p class="sub">설득이 필요한 사업을 캠페인으로 만들고, 병원 브랜드가 환자를 만나는 모든 접점을 설계했습니다.</p>
+  <p class="sub"><span class="ln">설득이 필요한 사업을 캠페인으로 만들고,</span> <span class="ln">병원 브랜드가 환자를 만나는 모든 접점을 설계했습니다.</span></p>
 </section>
 
 <section class="w" aria-label="주요 성과">
@@ -234,14 +236,14 @@ html{scroll-snap-type:y proximity}
 <section class="sec w" id="campaign">
   <p class="eyebrow">캠페인</p>
   <h2>설득이 필요한 사업을<br>캠페인으로 만들었습니다</h2>
-  <p class="lead">기획부터 영상 제작, 온오프라인 홍보, 서포터즈 운영까지 직접 이끌었습니다. 카드를 누르면 자세히 볼 수 있습니다.</p>
+  <p class="lead"><span class="ln">기획부터 영상 제작, 온오프라인 홍보,</span> <span class="ln">서포터즈 운영까지 직접 이끌었습니다.</span></p>
   <div class="sec-body cards" id="cards"></div>
 </section>
 
 <section class="sec w" id="hospital">
   <p class="eyebrow">병원 브랜드 마케팅</p>
   <h2>79년 된 병원을<br>젊게 바꿨습니다</h2>
-  <p class="lead">춘해병원 기획홍보실 실장으로, 다빈치 SP 로봇수술을 중심에 두고 홈페이지부터 공간까지 새로 세웠습니다.</p>
+  <p class="lead"><span class="ln">춘해병원 기획홍보실 실장으로, 다빈치 SP 로봇수술을 중심에 두고</span> <span class="ln">홈페이지부터 공간까지 새로 세웠습니다.</span></p>
   <div class="sec-body list" id="rows"></div>
 </section>
 
