@@ -25,19 +25,23 @@ h1,h2,h3,p{margin:0}
 .w{max-width:1520px;margin:0 auto;padding-inline:clamp(16px,4vw,64px)}
 .cap{font:500 12px/1.5 var(--sans);letter-spacing:.14em;color:var(--ink-2)}
 
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px)}
-nav .w{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
-nav b{font:500 15px var(--display);letter-spacing:.02em}
-nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:13px;color:var(--ink-2)}
-nav a{text-decoration:none}nav a:hover{color:var(--ink)}
-@media(max-width:600px){nav ul{gap:14px}}
+nav.pillnav{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 18px);z-index:10;display:flex;justify-content:center;pointer-events:none;padding-inline:12px}
+.pill{pointer-events:auto;display:flex;align-items:center;gap:4px;padding:6px 6px 6px 20px;border-radius:999px;background:rgba(20,22,22,.55);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(236,234,228,.14);box-shadow:0 8px 32px rgba(0,0,0,.25);transition:background .4s,transform .4s;animation:pillin .9s cubic-bezier(.2,.75,.2,1) .2s both}
+@keyframes pillin{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+nav.pillnav.solid .pill{background:rgba(20,22,22,.82)}
+.pill .logo{font:600 14px var(--display);letter-spacing:.12em;margin-right:16px;text-decoration:none;white-space:nowrap}
+.pill a.l{padding:8px 14px;border-radius:999px;font-size:13px;color:#d8d6d0;text-decoration:none;white-space:nowrap;transition:background .3s,color .3s}
+.pill a.l:hover,.pill a.l.on{background:rgba(236,234,228,.13);color:var(--ink)}
+.pill a.cta{padding:8px 16px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:500;text-decoration:none;margin-left:4px;white-space:nowrap;transition:background .3s}
+.pill a.cta:hover{background:var(--warm)}
+@media(max-width:600px){.pill{padding-left:6px}.pill .logo{display:none}.pill a.l{padding:7px 10px;font-size:12.5px}.pill a.cta{padding:7px 12px;font-size:12.5px}}
 
 /* hero */
-.hero{position:relative;margin-top:8px}
-.hero .frame{position:relative;aspect-ratio:21/9;max-height:78vh;width:100%;overflow:hidden}
+.hero{position:relative}
+.hero .frame{position:relative;aspect-ratio:21/9;max-height:86vh;min-height:520px;width:100%;overflow:hidden}
 .hero .frame img{height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05);animation:settle 2.6s cubic-bezier(.2,.7,.2,1) both}
 @keyframes settle{from{transform:scale(1.08)}to{transform:none}}
-.hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,14,14,.1) 30%,rgba(13,14,14,.92) 100%)}
+.hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,14,14,.45) 0%,rgba(13,14,14,0) 20%,rgba(13,14,14,.1) 35%,rgba(13,14,14,.92) 100%)}
 .hero .copy{position:absolute;left:0;right:0;bottom:clamp(20px,5vw,64px);z-index:1}
 .hero h1{font:200 clamp(30px,5.4vw,80px)/1.18 var(--display);letter-spacing:-.04em}
 .hero h1 strong{font-weight:600}
@@ -207,9 +211,9 @@ footer b{font:300 clamp(28px,3vw,44px)/1.2 var(--display);letter-spacing:-.04em;
 footer .fullline{max-width:30em;font:300 clamp(17px,1.5vw,20px)/1.7 var(--display);color:var(--ink);letter-spacing:-.02em}
 </style>
 
-<nav><div class="w"><b>LEE YEONJU</b><ul><li><a href="#work">작업</a></li><li><a href="#hospital">병원 마케팅</a></li><li><a href="#career">경력</a></li></ul></div></nav>
+<nav class="pillnav" aria-label="주요 메뉴"><div class="pill"><a class="logo" href="#top">LEE YEONJU</a><a class="l" href="#work">작업</a><a class="l" href="#hospital">병원 마케팅</a><a class="l" href="#career">경력</a><a class="cta" href="#p-dmo">영상 보기</a></div></nav>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="frame"><img src="img/st_bus2.jpg" alt="저상버스에서 내려 인도로 나서는 전동휠체어"></div>
   <div class="copy w">
     <p class="cap fadein" style="animation-delay:.1s">CONTENT MARKETING PM · BUSAN</p>
@@ -391,4 +395,11 @@ footer .fullline{max-width:30em;font:300 clamp(17px,1.5vw,20px)/1.7 var(--displa
   document.querySelectorAll('.nums b,.k b').forEach(el=>{const v=el.textContent.trim();if(/\d/.test(v)){el.dataset.v=v;el.textContent=v.replace(/\d/g,'0')}else el.classList.add('reveal');io.observe(el)});
   document.querySelectorAll('.reveal,.bars').forEach(el=>io.observe(el));
 })();
+</script>
+<script>
+(()=>{const nav=document.querySelector('.pillnav'),links=[...nav.querySelectorAll('a.l')];
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>innerHeight*.6),{passive:true});
+if(!('IntersectionObserver' in window))return;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+['work','hospital','career'].forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});})();
 </script>
