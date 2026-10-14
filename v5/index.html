@@ -307,7 +307,16 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
 .m22 a::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,14,14,.6),rgba(13,14,14,0) 35%);pointer-events:none}
 .m22 .lbl{position:absolute;z-index:2;left:clamp(14px,1.6vw,24px);bottom:16px;display:flex;align-items:baseline;gap:10px;font-size:12px;letter-spacing:.1em;color:#ECEAE4}
 .m22 .lbl b{font:200 clamp(22px,2vw,30px)/1 var(--display);letter-spacing:-.04em;color:var(--warm)}
-@media(max-width:800px){.hx2{grid-template-columns:1fr;grid-template-rows:auto;height:auto;max-height:none;min-height:0}.m22{height:62vh;min-height:380px}.hx2 .copy2{order:2;padding-top:28px;padding-bottom:8px}}
+@media(max-width:800px){
+  .hx2{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;height:100vh;height:100svh;min-height:560px;max-height:none}
+  .m22{min-height:0}
+  .m22 .lbl{bottom:10px;gap:6px;font-size:11px}.m22 .lbl b{font-size:20px}
+  .hx2 .copy2{order:2;padding-top:22px;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+  .hx2 .cap{margin-bottom:12px}
+  .hx2 h1{font-size:clamp(25px,7vw,34px)}.hx2 h1 br{display:none}
+  .proof2{margin-top:18px;gap:6px;font-size:14px}
+}
+@media(max-width:800px) and (max-height:700px){.proof2{display:none}}
 
 /* ===== ver.5: personal work (GOESBY) ===== */
 .flowline{display:flex;flex-wrap:wrap;gap:8px 0;margin-top:40px;font-size:14px;color:var(--ink-2)}
