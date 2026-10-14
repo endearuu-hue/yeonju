@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이연주 시네마틱</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;300;500;600&family=IBM+Plex+Sans+KR:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0D0E0E; --bg-2:#141616; --ink:#ECEAE4; --ink-2:#9A9D98; --body:#CFCCC5; --line:#262928; --warm:#E3B64B;
+  --display:"Gothic A1","IBM Plex Sans KR","Malgun Gothic",sans-serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.8 var(--sans);word-break:keep-all;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:auto}
+a{color:inherit}
+a:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+h1,h2,h3,p{margin:0}
+.w{max-width:1520px;margin:0 auto;padding-inline:clamp(16px,4vw,64px)}
+.cap{font:500 12px/1.5 var(--sans);letter-spacing:.14em;color:var(--ink-2)}
+
+nav.pillnav{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 18px);z-index:10;display:flex;justify-content:center;pointer-events:none;padding-inline:12px}
+.pill{pointer-events:auto;display:flex;align-items:center;gap:4px;padding:6px 6px 6px 20px;border-radius:999px;background:rgba(20,22,22,.55);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(236,234,228,.14);box-shadow:0 8px 32px rgba(0,0,0,.25);transition:background .4s,transform .4s;animation:pillin .9s cubic-bezier(.2,.75,.2,1) .2s both}
+@keyframes pillin{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+nav.pillnav.solid .pill{background:rgba(20,22,22,.82)}
+.pill .logo{font:600 14px var(--display);letter-spacing:.12em;margin-right:16px;text-decoration:none;white-space:nowrap}
+.pill a.l{padding:8px 14px;border-radius:999px;font-size:13px;color:#d8d6d0;text-decoration:none;white-space:nowrap;transition:background .3s,color .3s}
+.pill a.l:hover,.pill a.l.on{background:rgba(236,234,228,.13);color:var(--ink)}
+.pill a.cta{padding:8px 16px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:500;text-decoration:none;margin-left:4px;white-space:nowrap;transition:background .3s}
+.pill a.cta:hover{background:var(--warm)}
+@media(max-width:600px){.pill{padding-left:6px}.pill .logo{display:none}.pill a.l{padding:7px 10px;font-size:12.5px}.pill a.cta{padding:7px 12px;font-size:12.5px}}
+@media(max-width:600px){.pill{padding-right:6px}.pill a.cta{display:none}.pill a.l{padding:7px 9px}}
+
+/* hero */
+.hero{position:relative}
+.hero .frame{position:relative;aspect-ratio:21/9;max-height:86vh;min-height:520px;width:100%;overflow:hidden}
+.hero .frame img{height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05);animation:settle 2.6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes settle{from{transform:scale(1.08)}to{transform:none}}
+.hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,14,14,.45) 0%,rgba(13,14,14,0) 20%,rgba(13,14,14,.1) 35%,rgba(13,14,14,.92) 100%)}
+.hero .copy{position:absolute;left:0;right:0;bottom:clamp(20px,5vw,64px);z-index:1}
+.hero h1{font:200 clamp(30px,5.4vw,80px)/1.18 var(--display);letter-spacing:-.04em}
+.hero h1 strong{font-weight:600}
+.hero .cap{margin-bottom:18px}
+@media(max-width:700px){.hero .frame{aspect-ratio:4/5}}
+
+.intro{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px 80px;padding-block:clamp(56px,8vw,112px)}
+.intro p{font-size:clamp(17px,1.6vw,20px);line-height:1.85;max-width:40em}
+.intro .who{color:var(--ink-2);font-size:14px;line-height:2}
+@media(max-width:820px){.intro{grid-template-columns:1fr}}
+
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nums div{padding:40px 24px 36px 0}
+.nums div+div{padding-left:24px;border-left:1px solid var(--line)}
+.nums b{display:block;font:200 clamp(44px,6vw,96px)/1 var(--display);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.nums small{display:block;margin-top:16px;font-size:13px;line-height:1.6;color:var(--ink-2)}
+@media(max-width:820px){.nums{grid-template-columns:1fr 1fr}.nums div:nth-child(3){padding-left:0;border-left:0}.nums div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* section heads */
+.sec-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px 96px;align-items:end;padding-top:clamp(96px,12vw,180px)}
+.sec-head.solo{grid-template-columns:1fr}
+.sec-head h2{font:300 clamp(34px,5vw,72px)/1.15 var(--display);letter-spacing:-.045em;margin-top:14px}
+.sec-head .lede{margin-top:28px;font-size:clamp(16px,1.3vw,18px);line-height:1.85;color:var(--body);max-width:34em}
+@media(max-width:900px){.sec-head{grid-template-columns:1fr}}
+[id]{scroll-margin-top:80px}
+.toc{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink-2);align-self:end}
+.toc a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:15px 2px;border-bottom:1px solid var(--line);text-decoration:none;font-size:15px;transition:padding .35s cubic-bezier(.2,.7,.2,1)}
+.toc em{font-style:normal;font-size:13px;color:var(--ink-2);white-space:nowrap;transition:color .3s}
+.toc em::after{content:" →";opacity:0;transition:opacity .3s}
+.toc a:hover{padding-left:10px}
+.toc a:hover em{color:var(--warm)}
+.toc a:hover em::after{opacity:1}
+
+
+/* project */
+.proj{padding-top:clamp(72px,10vw,140px)}
+.proj-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.proj-top h3{font:300 clamp(28px,3.8vw,54px)/1.2 var(--display);letter-spacing:-.04em}
+.film{position:relative;display:block;overflow:hidden}
+.film img{aspect-ratio:16/9;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.film:hover img{transform:scale(1.025)}
+.film .play{position:absolute;left:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,40px);display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.08em;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.film .play i{flex:none;width:56px;height:56px;border:1px solid rgba(236,234,228,.75);border-radius:50%;position:relative;background:rgba(13,14,14,.35);backdrop-filter:blur(4px);transition:background .3s}
+.film .play i::after{content:"";position:absolute;left:23px;top:19px;border-left:13px solid var(--ink);border-top:9px solid transparent;border-bottom:9px solid transparent}
+.film:hover .play i{background:rgba(236,234,228,.18)}
+.films{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.films .play i{width:44px;height:44px}
+.films .play i::after{left:17px;top:13px;border-left-width:11px;border-top-width:8px;border-bottom-width:8px}
+@media(max-width:700px){.films{grid-template-columns:1fr}}
+.stills{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:4px}
+.stills img{aspect-ratio:16/9;object-fit:cover;filter:saturate(.85)}
+.detail{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,6fr) minmax(0,3fr);gap:32px 64px;padding-top:48px}
+.detail dl{margin:0;display:grid;gap:16px;font-size:14px;align-content:start}
+.detail dt{color:var(--ink-2);font-size:12px;letter-spacing:.14em}
+.detail dd{margin:4px 0 0}
+.story p{color:var(--body);max-width:40em}
+.story p+p,.story ul{margin-top:16px}
+.story ul{padding:0;list-style:none;display:grid;gap:8px;color:var(--body)}
+.story li{padding-left:20px;position:relative}
+.story li::before{content:"";position:absolute;left:0;top:.85em;width:10px;height:1px;background:var(--ink-2)}
+.k{display:grid;gap:28px;align-content:start}
+.k b{display:block;font:200 clamp(40px,4vw,56px)/1 var(--display);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.k small{display:block;margin-top:8px;font-size:13px;color:var(--ink-2)}
+@media(max-width:900px){.detail{grid-template-columns:1fr}.k{grid-template-columns:1fr 1fr}}
+
+/* bus stat */
+.bars{margin-top:24px;max-width:40em}
+.bars .row{display:grid;grid-template-columns:5.5em 1fr 3.8em;gap:14px;align-items:center;font-size:14px;color:var(--ink-2);margin-top:10px}
+.bars .bar{height:6px;background:var(--line)}
+.bars .bar i{display:block;height:100%;background:var(--ink-2);transform-origin:left;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.bars .row.hl{color:var(--ink)}
+.bars .row.hl .bar i{background:var(--warm)}
+.bars .row span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.js .bars:not(.in) .bar i{transform:scaleX(0)}
+.clip{display:block;margin-top:32px;max-width:40em;padding:28px 28px 24px;background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--ink);text-decoration:none;transition:border-color .3s}
+.clip:hover{border-color:var(--ink-2);border-top-color:var(--warm)}
+.clip>span{display:block}
+.clip-label{font-size:12px;letter-spacing:.14em;color:var(--warm)}
+.clip-src{margin-top:10px;font-size:13px;color:var(--ink-2)}
+.clip-h{margin-top:14px;font:500 clamp(20px,2vw,26px)/1.4 var(--display);letter-spacing:-.03em;color:var(--ink)}
+.clip-sub{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:6px;font-size:14px;color:var(--body)}
+.clip-sub span{display:block;padding-left:18px;position:relative}
+.clip-sub span::before{content:"";position:absolute;left:0;top:.8em;width:8px;height:1px;background:var(--ink-2)}
+.clip-more{margin-top:20px;font-size:13px;color:var(--ink-2)}
+.clip:hover .clip-more{color:var(--ink)}
+
+/* hospital works */
+.work{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:32px 64px;padding-top:clamp(64px,8vw,112px);align-items:start}
+.work.flip{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}
+.work.flip .txt{order:-1}
+.work h3{font:300 clamp(24px,2.6vw,36px)/1.25 var(--display);letter-spacing:-.035em;margin-top:10px}
+.work .txt p{margin-top:16px;color:var(--body)}
+.work .txt ul{margin:16px 0 0;padding-left:18px;color:var(--body)}
+.work .k{margin-top:32px;grid-template-columns:1fr 1fr}
+.g{display:grid;gap:4px}
+.g img{height:100%;object-fit:cover;background:var(--bg-2)}
+.g-blog{grid-template-columns:1.15fr 1fr}
+.g-blog img{object-fit:contain;object-position:top;background:#fff}
+.g-blog .main{grid-row:span 2}
+.g-press{grid-template-columns:repeat(4,1fr)}
+.g-press img{aspect-ratio:3/4;object-position:top}
+.g-print{grid-template-columns:repeat(3,1fr)}
+.g-print img:first-child{grid-column:1/-1;aspect-ratio:auto}
+.g-print img{aspect-ratio:3/4}
+.g-space{grid-template-columns:1fr 1fr}
+.g-space img:first-child{grid-column:1/-1}
+.g-space img{aspect-ratio:4/3}
+.g-space img:first-child{aspect-ratio:auto}
+@media(max-width:900px){.work,.work.flip{grid-template-columns:1fr}.work.flip .txt{order:0}.g-press{grid-template-columns:1fr 1fr}}
+
+/* career */
+
+
+footer{margin-top:clamp(96px,12vw,180px);border-top:1px solid var(--line);padding-block:56px}
+footer .w{display:grid;gap:clamp(48px,6vw,88px)}
+
+
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js .reveal{transform:none}}
+
+/* mobile: clear project boundaries */
+#work{counter-reset:proj}
+#hospital{counter-reset:work}
+@media(max-width:900px){
+  .proj{counter-increment:proj;margin-top:72px;padding-top:28px;border-top:1px solid var(--ink-2)}
+  .proj-top::before{content:counter(proj,decimal-leading-zero) " / 05";display:block;width:100%;font:500 12px var(--sans);letter-spacing:.14em;color:var(--warm)}
+  .work{counter-increment:work;margin-top:56px;padding-top:28px;border-top:1px solid var(--ink-2)}
+  .work .txt,.work.flip .txt{order:-1}
+  .work .txt::before{content:counter(work,decimal-leading-zero) " / 05";display:block;font:500 12px var(--sans);letter-spacing:.14em;color:var(--warm);margin-bottom:8px}
+}
+
+/* hero title: line-by-line rise */
+.hero h1 .l{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .l > span{display:inline-block;animation:rise 1.1s cubic-bezier(.2,.75,.2,1) both;animation-delay:calc(var(--i) * 140ms + 150ms)}
+@keyframes rise{from{transform:translateY(105%);opacity:0}to{transform:none;opacity:1}}
+.hero .fadein{animation:fadein 1s ease both;animation-delay:.9s}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:700px){.hero h1 .l{display:block}.hero h1 br.d{display:none}}
+
+/* career */
+.jobs{list-style:none;margin:48px 0 0;padding:0}
+.jobs li{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,4fr) minmax(0,1.8fr) minmax(0,1fr);gap:4px 32px;padding-block:26px;border-top:1px solid var(--line);align-items:baseline}
+.jobs li.head{padding-block:12px;border-top:1px solid var(--ink-2);font-size:12px;letter-spacing:.08em;color:var(--ink-2)}
+.jobs .d{font-size:14px;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.jobs .co b{display:block;font:300 clamp(22px,2.2vw,30px)/1.3 var(--display);letter-spacing:-.03em;color:var(--ink)}
+.jobs .tag{display:block;margin-top:2px;font-size:13px;color:var(--ink-2)}
+.jobs .dept,.jobs .rank{font-size:15px;color:var(--ink)}
+.jobs p{grid-column:2 / -1;margin-top:10px;color:var(--body);font-size:15px;line-height:1.8;max-width:60ch}
+@media(max-width:820px){
+  .jobs li{grid-template-columns:auto 1fr;gap:4px 10px}
+  .jobs li.head{display:none}
+  .jobs .d,.jobs .co,.jobs p{grid-column:1 / -1}
+  .jobs .co{margin-top:6px}
+  .jobs .dept,.jobs .rank{font-size:14px;color:var(--ink-2);margin-top:4px}
+  .jobs .dept::after{content:" ·"}
+  .jobs li:first-of-type{border-top:1px solid var(--ink-2)}
+}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);margin-top:64px;border-top:1px solid var(--line)}
+.skills > div,.skills > .sk{padding:28px 32px 0 0}
+.skills > div + div,.skills > .sk + .sk{padding-left:32px;border-left:1px solid var(--line)}
+.skills h3{font:500 18px/1.4 var(--display);letter-spacing:-.02em}
+.skills ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:9px}
+.skills li{position:relative;padding-left:16px;font-size:15px;line-height:1.6;color:var(--body)}
+.skills li::before{content:"";position:absolute;left:0;top:.8em;width:6px;height:1px;background:var(--ink-2)}
+@media(max-width:820px){.skills{grid-template-columns:1fr}.skills > div + div{padding-left:0;border-left:0;border-top:1px solid var(--line);margin-top:28px}}
+footer .fullline{margin:0;font:200 clamp(26px,3.4vw,50px)/1.35 var(--display);letter-spacing:-.04em;color:var(--ink-2)}
+footer .fullline .l{display:block}
+footer .fullline strong{font-weight:500;color:var(--ink)}
+@media(max-width:700px){footer .fullline span.l{display:inline}footer .fullline strong{margin-top:10px}}
+footer .sig{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+footer .sig b{font:500 15px var(--display);color:var(--ink);margin-right:14px;letter-spacing:.02em}
+footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
+
+/* chapter dividers between parts */
+.chapter{display:flex;align-items:baseline;gap:16px;padding-top:clamp(96px,12vw,180px)}
+.chapter .n{font:200 clamp(48px,6vw,88px)/1 var(--display);letter-spacing:-.05em;color:var(--warm)}
+.chapter .t{font:500 15px var(--display);color:var(--ink);white-space:nowrap}
+.chapter .rule{flex:1;height:1px;background:var(--ink-2);align-self:center;opacity:.6}
+.chapter .e{font-size:12px;letter-spacing:.14em;color:var(--ink-2);white-space:nowrap}
+.chapter + .sec-head{padding-top:clamp(40px,5vw,72px)}
+#hospital{background:#151817;box-shadow:0 0 0 100vmax #151817;clip-path:inset(0 -100vmax);padding-bottom:clamp(96px,12vw,160px);margin-top:clamp(96px,12vw,160px)}
+#hospital .chapter{padding-top:clamp(64px,8vw,120px)}
+@media(max-width:700px){.chapter .e{display:none}}
+
+/* ===== mobile fit ===== */
+.sk summary{list-style:none;cursor:default}
+.sk summary::-webkit-details-marker{display:none}
+@media(max-width:700px){
+  html{scroll-snap-type:y proximity}
+  header.hero,.proj,.work,.chapter,footer,.nums,#career .sec-head{scroll-snap-align:start;scroll-margin-top:78px}
+  header.hero{scroll-margin-top:0}
+  .proj{padding-top:20px;margin-top:40px}
+  .proj-top{margin-bottom:16px}
+  .proj-top h3{font-size:28px}
+  .stills,.films{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:6px;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,4vw,64px));padding-inline:clamp(16px,4vw,64px)}
+  .stills::-webkit-scrollbar,.films::-webkit-scrollbar{display:none}
+  .stills img{flex:0 0 72%;scroll-snap-align:start}
+  .films .film{flex:0 0 86%;scroll-snap-align:start}
+  .swipe{display:block;margin-top:8px;font-size:11px;letter-spacing:.12em;color:var(--ink-2)}
+  .detail{padding-top:24px;gap:20px}
+  .detail dl{grid-template-columns:1fr 1fr;gap:12px}
+  .story p{font-size:15px;line-height:1.75}
+  .story p+p{margin-top:14px}
+  .k{gap:14px}
+  .k b{font-size:40px}
+  .clip{margin-top:20px;padding:18px}
+  .clip-sub{display:none}
+  .clip-h{font-size:18px;margin-top:8px}
+  .clip-more{margin-top:12px}
+  .bars .row{margin-top:6px}
+  .sk{border-top:1px solid var(--line)}
+  .skills>.sk+.sk{border-left:0;padding-left:0;margin-top:0}
+  .skills>.sk{padding:0}
+  .sk summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+  .sk summary::after{content:"+";font:200 26px/1 var(--display);color:var(--ink-2);transition:transform .3s}
+  .sk[open] summary::after{transform:rotate(45deg)}
+  .sk ul{margin:0 0 18px}
+  .skills{margin-top:40px}
+}
+@media(min-width:701px){.swipe{display:none}}
+@media(max-width:700px){
+  .proj-top .cap{display:none}
+  .stills img{flex:0 0 auto;width:54%;height:auto}
+  .films .film{flex:0 0 auto;width:86%}
+  .clip{padding:14px 16px}
+  .clip-label,.clip-src{display:inline;font-size:11px}
+  .clip-src{margin-left:8px}
+  .clip-h{font-size:16px;line-height:1.45}
+  .clip-h br{display:none}
+  .clip-more{margin-top:8px;font-size:12px}
+  .bars{display:none}
+  .jobs p{font-size:14.5px}
+  .jobs li{padding-block:18px}
+  #career .sec-head{padding-top:28px}
+}
+
+.g-press a{display:block}.g-press a img{width:100%;transition:opacity .25s}.g-press a:hover img{opacity:.82}
+.clips{margin-top:24px;display:grid;gap:10px}.clips .clip{margin-top:0;padding:14px 18px}.clips .clip-src{margin-top:0;font-size:12px}.clips .clip-h{margin-top:4px;font-size:16px}
+/* ===== ver.5: personal work (GOESBY) ===== */
+.flowline{display:flex;flex-wrap:wrap;gap:8px 0;margin-top:40px;font-size:14px;color:var(--ink-2)}
+.flowline span{white-space:nowrap}
+.flowline span+span::before{content:"";display:inline-block;width:28px;height:1px;background:var(--ink-2);vertical-align:middle;margin:0 12px}
+.flowline span.hl{color:var(--ink)}
+.ph{display:block;border-radius:24px;border:6px solid #2B2E2D;overflow:hidden;background:#fff;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.ph img{aspect-ratio:390/844;object-fit:cover;object-position:top}
+.pc{border:1px solid var(--line)}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.3fr);gap:clamp(16px,2.4vw,40px);align-items:end}
+.trio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.26fr) minmax(0,.26fr);gap:clamp(12px,1.8vw,28px);align-items:end;margin-top:56px;text-decoration:none}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,28px);max-width:560px}
+.devcap{margin-top:16px;font-size:13px;color:var(--ink-2)}
+#personal .work .step,.endrow .step{display:block;font:200 clamp(48px,5vw,72px)/1 var(--display);letter-spacing:-.05em;color:var(--warm)}
+.endrow{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:32px 64px;align-items:end;padding-top:clamp(64px,8vw,112px)}
+.endrow h3{font:300 clamp(24px,2.6vw,36px)/1.25 var(--display);letter-spacing:-.035em;margin-top:14px}
+.endrow .txt p{margin-top:16px;color:var(--body)}
+.endrow .k{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.trio{grid-template-columns:1fr 1fr}.trio .pc{grid-column:1/-1}.duo{grid-template-columns:1fr .45fr}.endrow{grid-template-columns:1fr}.endrow .k{grid-template-columns:1fr 1fr}}
+
+/* ===== ver.5: brand channels ===== */
+#channels{background:#151817;box-shadow:0 0 0 100vmax #151817;clip-path:inset(0 -100vmax);padding-bottom:clamp(96px,12vw,160px)}
+#channels .chapter{padding-top:clamp(64px,8vw,120px)}
+.links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;font-size:14px}
+.links a{text-decoration:none;border-bottom:1px solid var(--ink-2);padding-bottom:2px}
+.links a:hover{border-color:var(--warm)}
+/* magazine grid: real post covers + titles */
+.mag{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 4px}
+.mag a{text-decoration:none;display:block}
+.mag img{aspect-ratio:1;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1),opacity .3s}
+.mag .im{overflow:hidden}
+.mag a:hover img{transform:scale(1.04)}
+.mag span{display:block;margin-top:10px;font-size:14px;line-height:1.5;color:var(--ink);padding-right:8px}
+.mag small{display:block;margin-top:4px;font-size:12px;color:var(--ink-2);letter-spacing:.04em}
+.covers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.covers a{display:block;overflow:hidden}
+.covers img{aspect-ratio:1;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.covers a:hover img{transform:scale(1.04)}
+.gridcap{display:flex;justify-content:space-between;gap:16px;margin-top:14px;font-size:13px;color:var(--ink-2)}
+.reels{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-top:4px;scroll-snap-type:x mandatory}
+.reels::-webkit-scrollbar{display:none}
+.reels img{flex:0 0 auto;height:clamp(240px,26vw,400px);width:auto;scroll-snap-align:start}
+.reels .gap{flex:0 0 20px}
+.sub{margin-top:clamp(48px,6vw,80px)}
+.sub .cap{margin-bottom:16px}
+.bz-top{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:32px 64px;align-items:end}
+@media(max-width:900px){.mag{grid-template-columns:repeat(2,minmax(0,1fr))}.covers{grid-template-columns:repeat(2,minmax(0,1fr))}.bz-top{grid-template-columns:1fr}}
+#channels{margin-top:clamp(96px,12vw,160px)}
+@media(max-width:900px){#personal .work .txt::before,#channels .work .txt::before{content:none}#personal .work,#channels .work{counter-increment:none}}
+</style>
+
+<nav class="pillnav" aria-label="주요 메뉴"><div class="pill"><a class="logo" href="#top">LEE YEONJU</a><a class="l" href="#work">공공사업</a><a class="l" href="#hospital">의료 브랜딩</a><a class="l" href="#personal">플랫폼 개발</a><a class="l" href="#channels">채널 운영</a><a class="l" href="#career">경력</a><a class="cta" href="#p-dmo">영상 보기</a></div></nav>
+
+<header class="hero" id="top">
+  <div class="frame"><img src="../img/st_bus2.jpg" alt="저상버스에서 내려 인도로 나서는 전동휠체어"></div>
+  <div class="copy w">
+    <p class="cap fadein" style="animation-delay:.1s">CONTENT MARKETING PM · BUSAN</p>
+    <h1><span class="l"><span style="--i:0">영상 한 편으로</span></span> <span class="l"><span style="--i:1"><strong>정규 사업</strong>을 만든</span></span><br class="d"><span class="l"><span style="--i:2">콘텐츠 마케터</span></span></h1>
+  </div>
+</header>
+
+<main>
+<div class="w">
+  <section class="intro">
+    <p class="who">이연주<br>콘텐츠 기획 · 영상 제작 · 브랜드 마케팅<br>부산관광공사, SKT 사회공헌팀, 부산광역시, 비바인사이트, 춘해병원 외</p>
+    <p class="reveal">설득이 필요한 사업을 찾아가 기록합니다. 관광 약자의 이동권, 발달장애인의 출퇴근, 반려견이 갈 수 없던 바다. 카메라가 먼저 도착한 곳에서 정책이 바뀌고, 새로운 프로그램이 생겼습니다.</p>
+  </section>
+
+  <section class="nums" aria-label="주요 성과">
+    <div><b>2위</b><small>전국 관광공사 평가<br>DMO 포용관광</small></div>
+    <div><b>3건</b><small>영상 기록 후<br>정규 사업·프로그램화</small></div>
+    <div><b>300명</b><small>울산 멍스플래쉬<br>참여 인원</small></div>
+    <div><b>3,065</b><small>병원 블로그 월 조회수<br>2024년 12월</small></div>
+  </section>
+
+  <section id="work">
+    <div class="chapter" aria-hidden="true"><span class="n">01</span><span class="t">공공사업 캠페인</span><span class="rule"></span><span class="e">PART 01 / 05</span></div>
+    <div class="sec-head">
+      <div><p class="cap">PUBLIC PROJECTS · R&amp;D · 규제 샌드박스 · 정규 사업화</p><h2 class="reveal">기록이<br>사업이 되기까지</h2><p class="lede">부산관광공사·SKT·부산광역시와 함께 교통약자의 이동권과 반려 문화를 다룬 캠페인을 이끌었습니다. 기획부터 촬영·편집, 서포터즈 운영까지 직접 맡았고, 영상으로 남긴 세 건의 사업은 규제 샌드박스 통과와 전국 관광공사 평가 2위를 거쳐 정규 사업이 되었습니다.</p></div>
+      <ol class="toc"><li><a href="#p-dmo"><span>DMO 포용관광 프로젝트</span><em>전국 평가 2위</em></a></li><li><a href="#p-shuttle"><span>착한셔틀</span><em>전국 정규 사업</em></a></li><li><a href="#p-bus"><span>저상버스 배리어프리 여행</span><em>저상버스 29%</em></a></li><li><a href="#p-temple"><span>반려견 동반 템플스테이</span><em>정규 편성</em></a></li><li><a href="#p-surf"><span>멍콕 도그서핑 페스티벌</span><em>최초 · 300명</em></a></li></ol>
+    </div>
+
+    <article class="proj" id="p-dmo">
+      <div class="proj-top"><h3 class="reveal">DMO 포용관광 프로젝트</h3><p class="cap">부산관광공사 × 이유사회적협동조합</p></div>
+      <a class="film" href="https://youtu.be/VJUTnkIpMIE" target="_blank" rel="noopener" aria-label="유튜브에서 활동 결과 영상 보기"><img src="../img/yt_dmo.jpg" alt="포용관광 프로젝트 참가자 단체 사진"><span class="play"><i></i>활동 결과 영상 보기</span></a>
+      <div class="stills"><img src="../img/st_dmo1.jpg" alt="공원 길을 지나는 전동휠체어"><img src="../img/st_dmo2.jpg" alt="행사장에 입장하는 참가자들"><img src="../img/st_dmo3.jpg" alt="서포터즈 회의 장면"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
+      <div class="detail">
+        <dl><div><dt>ROLE</dt><dd>PM · 캠페인 기획<br>영상 제작 · 온오프라인 홍보<br>대학생 서포터즈 운영</dd></div><div><dt>PARTNER</dt><dd>부산관광공사<br>이유사회적협동조합</dd></div></dl>
+        <div class="story">
+          <p>관광 콘텐츠는 대부분 비장애인을 기준으로 만들어집니다. 장애인과 고령자도 불편 없이 여행하는 시스템을 만드는 사업을, 정책 담당자가 공감할 수 있는 이야기로 풀었습니다.</p>
+          <p>사업의 시작부터 성과까지 한 흐름으로 엮고, 관광 약자의 인터뷰와 현장 기록을 중심에 두었습니다. 부울경 대학생 서포터즈와 SNS 콘텐츠, 오프라인 캠페인도 함께 운영했습니다.</p>
+        </div>
+        <div class="k"><div><b>2위</b><small>전국 관광공사 평가</small></div><div><b>정규 사업</b><small>평가 후 사업 확대</small></div></div>
+      </div>
+    </article>
+
+    <article class="proj" id="p-shuttle">
+      <div class="proj-top"><h3 class="reveal">착한셔틀</h3><p class="cap">SKT 사회공헌팀 × 이유사회적협동조합</p></div>
+      <a class="film" href="https://youtu.be/XBfx55lfSss" target="_blank" rel="noopener" aria-label="유튜브에서 착한셔틀 예고편 보기"><img src="../img/yt_shuttle.jpg" alt="착한셔틀 영상 썸네일, 꾸준한 출퇴근이 불가능한 당신에게"><span class="play"><i></i>프로젝트 예고편 보기</span></a>
+      <div class="stills"><img src="../img/st_shuttle1.jpg" alt="밤길에 출발을 준비하는 셔틀"><img src="../img/st_shuttle2.jpg" alt="회의 중인 이유사회적협동조합 대표"><img src="../img/st_shuttle3.jpg" alt="착한셔틀 차량 로고"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
+      <div class="detail">
+        <dl><div><dt>ROLE</dt><dd>PM · 캠페인 기획<br>영상 제작 · 온오프라인 홍보</dd></div><div><dt>PARTNER</dt><dd>SKT 사회공헌팀<br>이유사회적협동조합</dd></div></dl>
+        <div class="story">
+          <p>대중교통을 타기 어려운 발달장애인 직장인에게 안전한 출퇴근길을 만드는 사업입니다. 스타트업이 지자체를 설득하고, 예산을 확보하고, 실제 루트를 달리기까지를 밀착 취재했습니다.</p>
+          <p>운행 중 생긴 예상 밖의 문제와 해결 과정은 무겁지 않게, 위트 있게 담았습니다.</p>
+        </div>
+        <div class="k"><div><b>통과</b><small>규제 샌드박스</small></div><div><b>전국</b><small>정규 사업으로 확장</small></div></div>
+      </div>
+    </article>
+
+    <article class="proj" id="p-bus">
+      <div class="proj-top"><h3 class="reveal">저상버스를 타고 떠나는 배리어프리 여행</h3><p class="cap">장애인의 날 기획</p></div>
+      <a class="film" href="https://youtu.be/jT8bK6KbUJI" target="_blank" rel="noopener" aria-label="유튜브에서 저상버스 현장 체험 영상 보기"><img src="../img/yt_bus.jpg" alt="저상버스 휠체어석의 참가자, 우리는 각자의 속도로 삶을 살아간다"><span class="play"><i></i>현장 체험 영상 보기</span></a>
+      <div class="stills"><img src="../img/st_bus1.jpg" alt="저상버스 경사판으로 내리는 휠체어"><img src="../img/st_bus2.jpg" alt="정류장에 내린 참가자"><img src="../img/st_bus3.jpg" alt="영도 바닷가에 도착한 모습"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
+      <div class="detail">
+        <dl><div><dt>ROLE</dt><dd>PM · 캠페인 기획<br>영상 제작 · 온오프라인 홍보</dd></div><div><dt>ROUTE</dt><dd>센텀시티 →<br>영도 국립해양박물관</dd></div></dl>
+        <div class="story">
+          <p>부산 시내버스 2,517대 중 휠체어로 탈 수 있는 저상버스는 728대입니다. 기사 속 숫자로만 남아 있던 문제를, 저상버스만 타고 영도까지 가는 여행으로 직접 겪어 보게 했습니다.</p>
+          <div class="bars" role="img" aria-label="시내버스 중 저상버스 비율: 서울 66.3%, 대구 48.7%, 부산 29%, 전국 평균 27.8%">
+            <div class="row"><span>서울</span><div class="bar"><i style="width:66.3%"></i></div><span>66.3%</span></div>
+            <div class="row"><span>대구</span><div class="bar"><i style="width:48.7%"></i></div><span>48.7%</span></div>
+            <div class="row hl"><span>부산</span><div class="bar"><i style="width:29%"></i></div><span>29%</span></div>
+            <div class="row"><span>전국 평균</span><div class="bar"><i style="width:27.8%"></i></div><span>27.8%</span></div>
+          </div>
+          <a class="clip" href="https://www.busan.com/view/busan/view.php?code=2022032819441194224" target="_blank" rel="noopener">
+            <span class="clip-label">기획 출발점</span>
+            <span class="clip-src">부산일보 · 2022.03.28 · 나웅기 기자</span>
+            <span class="clip-h">탈 수 있는 시내버스 29%…<br>이동권 막힌 부산 장애인</span>
+            <span class="clip-sub"><span>서울 66%·대구 48%에 비해 저조</span><span>노선 144개 중 73개에만 저상버스 운행</span><span>언덕 운행 불편을 이유로 교체 기피</span></span>
+            <span class="clip-more">기사 원문 보기 ↗</span>
+          </a>
+        </div>
+        <div class="k"><div><b>29%</b><small>부산 시내버스 중 저상버스</small></div><div><b>728대</b><small>2,517대 중 휠체어 탑승 가능</small></div></div>
+      </div>
+    </article>
+
+    <article class="proj" id="p-temple">
+      <div class="proj-top"><h3 class="reveal">반려견 동반 템플스테이 ‘멍콕’</h3><p class="cap">비바인사이트 × 홍법사</p></div>
+      <a class="film" href="https://youtu.be/Z-RYLUqzkK4" target="_blank" rel="noopener" aria-label="유튜브에서 템플스테이 후기 영상 보기"><img src="../img/yt_temple.jpg" alt="홍법사에서 반려견을 안은 참가자들과 스님"><span class="play"><i></i>후기 영상 보기</span></a>
+      <div class="stills"><img src="../img/st_temple1.jpg" alt="불상 앞 잔디밭의 참가자와 반려견"><img src="../img/st_temple2.jpg" alt="반려견과 함께 걷는 참가자들"><img src="../img/st_temple3.jpg" alt="잔디 위의 흰 반려견"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
+      <div class="detail">
+        <dl><div><dt>ROLE</dt><dd>영상 기획 · 제작</dd></div><div><dt>PARTNER</dt><dd>비바인사이트<br>홍법사</dd></div></dl>
+        <div class="story">
+          <p>반려동물 동반이 어려웠던 템플스테이에 명상, 산책, 반려견과의 교감을 더한 새로운 프로그램입니다. 참가자들의 경험을 중심으로 이야기를 구성했습니다.</p>
+        </div>
+        <div class="k"><div><b>정규 편성</b><small>프로그램 상품으로 자리 잡음</small></div></div>
+      </div>
+    </article>
+
+    <article class="proj" id="p-surf">
+      <div class="proj-top"><h3 class="reveal">멍콕 도그서핑 페스티벌</h3><p class="cap">멍콕 · 비바인사이트</p></div>
+      <div class="films">
+        <a class="film" href="https://youtu.be/ACcatgv4EhQ" target="_blank" rel="noopener" aria-label="유튜브에서 2023 다대포 영상 보기"><img src="../img/yt_surf1.jpg" alt="서핑 슈트를 입은 골든리트리버, 2023 다대포"><span class="play"><i></i>2023 다대포</span></a>
+        <a class="film" href="https://youtu.be/LUkVODzjv7U" target="_blank" rel="noopener" aria-label="유튜브에서 2025 울산 비치 멍스플래쉬 영상 보기"><img src="../img/yt_surf2.jpg" alt="카약 위 코기 두 마리, 2025 울산 비치 멍스플래쉬"><span class="play"><i></i>2025 울산</span></a>
+      </div>
+      <div class="stills"><img src="../img/st_surf12.jpg" alt="서핑보드 위에 선 반려견"><img src="../img/st_surf21.jpg" alt="패들보드 위에 앉은 반려견"><img src="../img/st_surf23.jpg" alt="구명조끼를 입고 헤엄치는 반려견"></div>
+      <span class="swipe">← 옆으로 넘겨 보기</span>
+      <div class="detail">
+        <dl><div><dt>ROLE</dt><dd>영상 기획 · 제작</dd></div><div><dt>WHERE</dt><dd>2023 부산 다대포<br>2025 울산 솔개해수욕장</dd></div></dl>
+        <div class="story">
+          <p>서핑은 그동안 반려견이 함께할 수 없는 레저였습니다. 멍콕 도그서핑 페스티벌은 그 바다를 처음으로 반려견에게 연 행사입니다. 템플스테이에 이어, 반려견이 갈 수 없던 곳의 문을 연 두 번째 시도였습니다.</p>
+          <p>보드 위에 처음 올라선 반려견과 곁을 지키는 보호자의 순간을 중심으로 현장을 기록했습니다.</p>
+        </div>
+        <div class="k"><div><b>최초</b><small>반려견과 함께 타는 서핑 행사</small></div><div><b>300명</b><small>2025 울산 참여</small></div></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="hospital">
+    <div class="chapter" aria-hidden="true"><span class="n">02</span><span class="t">의료 브랜드 마케팅</span><span class="rule"></span><span class="e">PART 02 / 05</span></div>
+    <div class="sec-head">
+      <div><p class="cap">HEALTHCARE BRANDING · 2023–2025</p><h2 class="reveal">79년의 신뢰에<br>새 얼굴을</h2><p class="lede">다빈치 SP 단일공 로봇수술을 브랜드의 중심 메시지로 세웠습니다. 홈페이지와 블로그, 보도자료, 리플렛, 원내 공간까지 환자가 병원을 만나는 모든 접점을 한 메시지로 맞추고, 로봇수술 600례와 ‘국내 최초’ 수술 소식을 언론에 알렸습니다.</p></div>
+      <ol class="toc"><li><a href="#h-web"><span>브랜드 홈페이지</span><em>로봇수술 600례</em></a></li><li><a href="#h-blog"><span>브랜드 블로그</span><em>월 조회수 3,065</em></a></li><li><a href="#h-press"><span>보도자료</span><em>매체 4곳</em></a></li><li><a href="#h-print"><span>책자와 리플렛</span><em>지침서 · 리플렛</em></a></li><li><a href="#h-space"><span>공간 브랜딩</span><em>로고 리뉴얼</em></a></li></ol>
+    </div>
+
+    <article class="work" id="h-web">
+      <div class="g"><img src="../img/p7_0.jpg" alt="춘해병원 홈페이지 메인, 다빈치 SP 로봇수술 배너"></div>
+      <div class="txt"><p class="cap">WEBSITE</p><h3>브랜드 홈페이지</h3><p>로봇수술 랜딩페이지를 기획하고 사용하기 쉬운 화면을 설계했습니다. 공지사항에 실을 보도자료도 직접 썼습니다.</p>
+        <div class="k"><div><b>600례</b><small>다빈치 SP 로봇수술 달성 홍보</small></div></div></div>
+    </article>
+
+    <article class="work flip" id="h-blog">
+      <div class="txt"><p class="cap">NAVER BLOG · SEO</p><h3>브랜드 블로그</h3><p>병명을 검색한 사람이 건강 정보와 함께 병원을 발견하도록 콘텐츠를 기획하고 네이버 검색에 맞춰 최적화했습니다. 병원 내부 소식으로 환자에게는 신뢰를, 직원에게는 자부심을 더했습니다.</p>
+        <div class="k"><div><b>3,065</b><small>월 조회수 (2024.12)</small></div><div><b>3.3%</b><small>월 재방문율 (2024.12)</small></div></div></div>
+      <div class="g g-blog"><img class="main" src="../img/p8_1.jpg" alt="춘해병원 블로그 게시물 목록"><img src="../img/p8_2.jpg" alt="조회수 그래프"><img src="../img/p8_3.jpg" alt="재방문율 그래프"></div>
+    </article>
+
+    <article class="work" id="h-press">
+      <div class="g g-press"><a href="https://www.busan.com/view/busan/view.php?code=2024082817353817464" target="_blank" rel="noopener"><img src="../img/p9_0.jpg" alt="부산일보 기사: 다빈치SP 로봇 수술 500례 달성"></a><a href="https://www.busan.com/view/busan/view.php?code=2024111313182979869" target="_blank" rel="noopener"><img src="../img/p9_1.jpg" alt="부산일보 기사: 국내 최초 단일공 로봇 자궁근종 선택 제거"></a><a href="https://kormedi.com/1739541/" target="_blank" rel="noopener"><img src="../img/p9_2.jpg" alt="코메디닷컴 기사"></a><img src="../img/p9_4.jpg" alt="네이버 뉴스 검색 결과"></div>
+      <div class="txt"><p class="cap">PRESS</p><h3>보도자료 작성 및 배포</h3><p>자궁 분야 보도자료를 직접 써서 배포했고, ‘춘해병원’을 검색하면 로봇수술 기사가 함께 노출되도록 기획했습니다.</p>
+        <div class="k"><div><b>4곳</b><small>부산일보 · 파이낸셜뉴스 · 코메디닷컴 · 경상일보</small></div></div><div class="clips"><a class="clip" href="https://kormedi.com/1739541/" target="_blank" rel="noopener"><span class="clip-src">코메디닷컴 · 2024.11.26</span><span class="clip-h">“자궁근종 수술… 자궁 다 들어내지 않아도 돼”</span></a><a class="clip" href="https://www.busan.com/view/busan/view.php?code=2024111313182979869" target="_blank" rel="noopener"><span class="clip-src">부산일보 · 2024.11.13</span><span class="clip-h">국내 최초 단일공 로봇 이용 ‘자궁근종 선택 제거’ 성공</span></a><a class="clip" href="https://www.busan.com/view/busan/view.php?code=2024082817353817464" target="_blank" rel="noopener"><span class="clip-src">부산일보 · 2024.08.28</span><span class="clip-h">춘해병원, 다빈치 SP 로봇 수술 500례 달성</span></a></div></div>
+    </article>
+
+    <article class="work flip" id="h-print">
+      <div class="txt"><p class="cap">PRINT</p><h3>책자와 리플렛</h3><p>진료 후에도 환자가 스스로 건강을 관리할 수 있는 자가운동 지침서와 입원생활안내, 로봇수술 홍보물을 디자인했습니다.</p></div>
+      <div class="g g-print"><img src="../img/p10_0.jpg" alt="입원생활안내 리플렛"><img src="../img/p10_1.jpg" alt="어깨 관리 지침서"><img src="../img/p10_4.jpg" alt="로봇수술 500례 홍보물"><img src="../img/p10_2.jpg" alt="허리 운동법"></div>
+    </article>
+
+    <article class="work" id="h-space">
+      <div class="g g-space"><img src="../img/p11_0.jpg" alt="로봇수술 안내 게시물과 복도"><img src="../img/p11_1.jpg" alt="병원 외관 야경"><img src="../img/p11_2.jpg" alt="민트색 띠지를 적용한 출입구"></div>
+      <div class="txt"><p class="cap">SPACE</p><h3>로고 리뉴얼에 맞춘 공간 기획</h3><p>새 로고의 민트 컬러로 유리창 띠지와 복도 게시물을 통일해, 방문객이 브랜드를 한눈에 알아보도록 했습니다.</p></div>
+    </article>
+  </section>
+
+<section id="personal">
+  <div class="chapter" aria-hidden="true"><span class="n">03</span><span class="t">플랫폼 개발</span><span class="rule"></span><span class="e">PART 03 / 05</span></div>
+  <div class="sec-head solo">
+    <div><p class="cap">PRODUCT BUILD · 기획 · 디자인 · 개발 (AI) · 2026</p><h2>사진 일의 하루를<br>하나의 플랫폼으로</h2><p class="lede">웨딩 스냅 브랜드 GOESBY를 위해 본식 일정 관리, 사진 전달, 셀렉과 앨범 배치까지 사진 일의 하루를 하나의 플랫폼으로 만들었습니다. 기획·디자인·개발을 AI와 함께 혼자 맡아 7주 만에 완성했고, 컴퓨터와 휴대폰에서 같은 흐름으로 이어집니다.</p>
+    <p class="flowline"><span class="hl">본식 일정</span><span>코드 문자</span><span class="hl">사진 전달</span><span>셀렉</span><span>앨범 배치</span><span>수정 요청</span><span class="hl">앨범 제작</span></p></div>
+  </div>
+
+  <a class="trio" href="https://goesby-v2-bay.vercel.app" target="_blank" rel="noopener">
+    <img class="pc" src="../img/gb_home.jpg" alt="GOESBY 홈페이지 컴퓨터 화면">
+    <span class="ph"><img src="../img/gbm_home.jpg" alt="휴대폰 홈 화면"></span>
+    <span class="ph"><img src="../img/gbm_venues.jpg" alt="휴대폰 호텔별 갤러리"></span>
+  </a>
+  <p class="devcap">브랜드 홈페이지 · 호텔 9곳 갤러리 · <a href="https://goesby-v2-bay.vercel.app" target="_blank" rel="noopener">goesby-v2-bay.vercel.app ↗</a></p>
+
+  <article class="work">
+    <div class="g"><img class="pc" src="../img/gb_admin2.jpg" alt="관리자 신부 관리 화면"></div>
+    <div class="txt"><span class="step">01</span><h3>본식 일정</h3><p>신부를 예식일 순으로 세우고, 다음 예식까지 남은 날을 첫 화면에 띄웁니다. 코드 전달부터 출고 대기까지 5단계 진행을 한 화면에서 봅니다. 휴대폰에서는 아래 탭으로 같은 관리를 합니다.</p>
+      <div class="k"><div><b>5단계</b><small>코드 전달 → 출고 대기</small></div><div><b>0명</b><small>운영에 필요한 개발자</small></div></div></div>
+  </article>
+  <article class="work flip">
+    <div class="txt"><span class="step">02</span><h3>사진 전달</h3><p>버튼 하나로 신부 번호와 코드가 채워진 문자가 열립니다. 신부는 문자 속 주소를 눌러 휴대폰에서 바로 들어오고, 무엇을 할지 5단계가 먼저 보입니다. 보정본을 올리면 신부 화면에 도착 알림이 뜹니다.</p>
+      <div class="k"><div><b>0원</b><small>문자 발송 비용</small></div></div></div>
+    <div class="pair"><span class="ph"><img src="../img/gb_sms.jpg" alt="신부에게 보내는 코드 문자" style="object-fit:contain;object-position:bottom;background:#F2F2F7"></span><span class="ph"><img src="../img/gbm_steps.jpg" alt="신부 휴대폰 첫 화면, 5단계 안내"></span></div>
+  </article>
+  <article class="work">
+    <div class="duo"><img class="pc" src="../img/gb_album_work.jpg" alt="컴퓨터에서 앨범에 사진을 놓는 화면"><span class="ph"><img src="../img/gbm_album.jpg" alt="휴대폰에서 앨범에 사진을 놓는 화면"></span></div>
+    <div class="txt"><span class="step">03</span><h3>셀렉 · 앨범 배치</h3><p>신부가 50장을 골라 40쪽 앨범에 한 쪽씩 직접 놓고, 고칠 사진에 수정 요청을 남깁니다. 컴퓨터에서 하다 휴대폰으로 이어 해도 놓은 그대로 남습니다.</p>
+      <div class="k"><div><b>50 → 40</b><small>셀렉 사진 → 앨범 쪽수</small></div></div></div>
+  </article>
+  <div class="endrow">
+    <div class="txt"><span class="step">04</span><h3>앨범 제작</h3><p>신부가 놓은 순서 그대로 쪽 번호가 붙은 파일로 한 번에 내려받아 바로 제작에 넘깁니다. 기획·디자인·개발을 AI와 함께 혼자 했고, 오픈을 앞두고 있습니다.</p></div>
+    <div class="k"><div><b>7주</b><small>1인 기획·디자인·개발</small></div><div><b>369회</b><small>직접 고쳐 올린 배포</small></div><div><b>PC · 폰</b><small>같은 흐름으로 연동</small></div><div><b>9곳</b><small>호텔 베뉴 갤러리</small></div></div>
+  </div>
+</section>
+
+  <section id="channels">
+  <div class="chapter" aria-hidden="true"><span class="n">04</span><span class="t">브랜드 채널 운영</span><span class="rule"></span><span class="e">PART 04 / 05</span></div>
+  <div class="sec-head">
+    <div><p class="cap">CONTENT &amp; SEARCH · 2025–</p><h2>목공소와 목재 창고를<br>검색 위에 세우다</h2><p class="lede">주문제작 목공소 BBWW와 목재·합판 도매 창고 부산건축자재, 같은 회사의 두 브랜드 채널을 맡았습니다. 손님이 실제로 검색하는 말로 시공 사례를 쓰고, CNC 가공 현장을 릴스와 카드뉴스로 보여줍니다. BBWW 블로그에만 17개월간 348편을 썼습니다.</p></div>
+    <ol class="toc"><li><a href="#bw-bbww"><span>BBWW 네이버 블로그</span><em>시공 사례 348건</em></a></li><li><a href="#bw-busan"><span>부산건축자재 SNS 채널</span><em>통합검색 1위 7개</em></a></li></ol>
+  </div>
+
+  <!-- BBWW -->
+  <article class="work" id="bw-bbww">
+    <div class="mag">
+      <a href="https://blog.naver.com/tdkorea3/224058256826" target="_blank" rel="noopener"><div class="im"><img src="../img/bbm0.jpg" alt="원목 상가문"></div><span>원목 인테리어 상가문·카페문 전문 제작</span><small>2025.10</small></a>
+      <a href="https://blog.naver.com/tdkorea3/223848805075" target="_blank" rel="noopener"><div class="im"><img src="../img/bbm2.jpg" alt="나무 대문"></div><span>단독주택·한옥·별장에 맞춘 나무 대문</span><small>2025.04</small></a>
+      <a href="https://blog.naver.com/tdkorea3/223850993124" target="_blank" rel="noopener"><div class="im"><img src="../img/bbm5.jpg" alt="원목 현관문"></div><span>전원주택 대문, 디자인보다 먼저 볼 3가지</span><small>2025.04</small></a>
+      <a href="https://blog.naver.com/tdkorea3/223845041665" target="_blank" rel="noopener"><div class="im"><img src="../img/bbm7.jpg" alt="원목 빵 진열대"></div><span>매장에 딱 맞춘 베이커리 원목 빵매대</span><small>2025.04</small></a>
+      <a href="https://blog.naver.com/tdkorea3/223835633397" target="_blank" rel="noopener"><div class="im"><img src="../img/bbm10.jpg" alt="아치형 나무문"></div><span>카페 입구 실제 시공 사례로 비교한 나무문</span><small>2025.04</small></a>
+      <a href="https://blog.naver.com/tdkorea3/223914205278" target="_blank" rel="noopener"><div class="im"><img src="../img/bbm13.jpg" alt="간살 슬라이딩도어"></div><span>미닫이문, 셀프로 했다가 후회하신다면</span><small>2025.06</small></a>
+    </div>
+    <div class="txt"><p class="cap">NAVER BLOG · 2025.03 – 2026.07</p><h3>BBWW 네이버 블로그</h3><p>열처리 가공 나무문·가구를 주문 제작하는 목공 브랜드입니다. 카페·음식점·매장 사장님이 무엇을 바꾸고 싶은지 먼저 짚고, 시공 전 현장과 시공 후 공간을 나란히 보여주는 칼럼형 시공 사례로 블로그를 운영했습니다.</p><p>검색 노출 로직이 바뀌며 자연 검색만으로는 노출이 흔들리자, 검색광고를 함께 돌려 핵심 키워드 자리를 지켰습니다.</p>
+      <div class="k" style="grid-template-columns:repeat(3,1fr)"><div><b>348건</b><small>17개월간 기록한 시공 사례</small></div><div><b>200편</b><small>카페·상가 사장님을 위한 글</small></div><div><b>1,972</b><small>독자 공감</small></div></div>
+      <div class="links"><a href="https://blog.naver.com/tdkorea3" target="_blank" rel="noopener">BBWW 블로그 ↗</a></div></div>
+  </article>
+
+  <!-- 부산건축자재 -->
+  <article class="sub" id="bw-busan">
+    <div class="bz-top">
+      <div><p class="cap">BLOG · TISTORY · INSTAGRAM · 2026.10 –</p><h3 style="font:300 clamp(24px,2.6vw,36px)/1.25 var(--display);letter-spacing:-.035em">(주)부산건축자재합판목재도매</h3><p style="margin-top:16px;color:var(--body);max-width:44em">200평 창고형 목재·합판 도매 업체의 네이버 블로그·티스토리·인스타그램을 운영합니다. 키워드마다 상위 글을 비교해 원고를 쓰고, 표지 카드를 직접 디자인하고, CNC 가공·재단 장면으로 릴스와 카드뉴스를 만듭니다. 올린 다음 날엔 채널별 노출을 확인해 보고합니다.</p>
+        <div class="links"><a href="https://blog.naver.com/tdkorea6" target="_blank" rel="noopener">네이버 블로그 ↗</a><a href="https://www.instagram.com/bbww_wood_official/" target="_blank" rel="noopener">인스타그램 ↗</a><a href="https://bbww-wood.vercel.app" target="_blank" rel="noopener">홈페이지 ↗</a></div></div>
+      <div class="k" style="grid-template-columns:repeat(3,1fr)"><div><b>7개</b><small>네이버 통합검색 블로그 1위 키워드</small></div><div><b>26개</b><small>노린 47개 중 통합검색 노출 (첫 2주)</small></div><div><b>하루</b><small>발행 다음 날 통합 1위 (칼라MDF·부산CNC)</small></div></div>
+    </div>
+    <div class="covers" style="margin-top:40px">
+      <a href="https://blog.naver.com/tdkorea6/224441516267" target="_blank" rel="noopener"><img src="../img/bzm1.jpg" alt="원형타공 글 표지"></a>
+      <a href="https://blog.naver.com/tdkorea6/224439611435" target="_blank" rel="noopener"><img src="../img/bzm3.jpg" alt="나무모양재단 글 표지"></a>
+      <a href="https://blog.naver.com/tdkorea6/224440881539" target="_blank" rel="noopener"><img src="../img/bzm4.jpg" alt="원목선반제작 글 표지"></a>
+      <a href="https://blog.naver.com/tdkorea6/224439420730" target="_blank" rel="noopener"><img src="../img/bzm7.jpg" alt="CNC재단 글 표지"></a>
+      <a href="https://blog.naver.com/tdkorea6/224439395399" target="_blank" rel="noopener"><img src="../img/bzm8.jpg" alt="칼라MDF 글 표지"></a>
+      <a href="https://blog.naver.com/tdkorea6/224436250823" target="_blank" rel="noopener"><img src="../img/bzm11.jpg" alt="집성목종류 글 표지"></a>
+      <a href="https://blog.naver.com/tdkorea6/224435839869" target="_blank" rel="noopener"><img src="../img/bzm13.jpg" alt="MDF재단 글 표지"></a>
+      <a href="https://blog.naver.com/tdkorea6/224434373584" target="_blank" rel="noopener"><img src="../img/bzm15.jpg" alt="나무상판 글 표지"></a>
+    </div>
+    <p class="gridcap"><span>네이버 블로그 글 표지 · 직접 디자인</span><span>누르면 글로 이동</span></p>
+    <div class="reels" style="margin-top:32px"><img src="../img/bw_reel0.jpg" alt="릴스 커버"><img src="../img/bw_reel1.jpg" alt="릴스 커버"><img src="../img/bw_reel2.jpg" alt="릴스 커버"><img src="../img/bw_reel3.jpg" alt="릴스 커버"><img src="../img/bw_reel4.jpg" alt="릴스 커버"><img src="../img/bw_reel5.jpg" alt="릴스 커버"><img src="../img/bw_reel6.jpg" alt="릴스 커버"><span class="gap"></span><img src="../img/bw_card0.jpg" alt="카드뉴스"><img src="../img/bw_card1.jpg" alt="카드뉴스"><img src="../img/bw_card2.jpg" alt="카드뉴스"><img src="../img/bw_card3.jpg" alt="카드뉴스"></div>
+    <p class="gridcap"><span>인스타그램 릴스 7편 · 카드뉴스 4편</span><span>← 옆으로 넘겨 보기</span></p>
+  </article>
+</section>
+
+  <section id="career" class="career">
+    <div class="chapter" aria-hidden="true"><span class="n">05</span><span class="t">경력</span><span class="rule"></span><span class="e">PART 05 / 05</span></div>
+    <div class="sec-head solo">
+      <div><p class="cap">CAREER</p><h2 class="reveal">기획에서 제작까지,<br>직접 해온 일</h2><p class="lede">사회적기업 PM, 종합병원 기획홍보실장, 목공 브랜드 마케팅 과장을 거쳐 지금은 토스씨엑스에서 AI 학습 데이터의 현장에 있습니다. 기획에서 멈추지 않고 촬영·디자인·개발까지 직접 만들어 왔습니다.</p></div>
+      
+    </div>
+    <ol class="jobs">
+      <li class="head" aria-hidden="true"><span>기간</span><span>회사</span><span>부서</span><span>직급</span></li>
+      <li><span class="d">2026.07 – 재직 중</span><div class="co"><b>토스씨엑스</b><span class="tag">토스 고객 경험(CX) 전문 계열사</span></div><span class="dept">운영지원</span><span class="rank">사원</span><p>AI가 일하는 방식을 바꾸는 지금, 그 변화를 가장 앞에서 실험하는 토스에서 일하고 있습니다. 토스 상담 음성 인식 AI 모델 개발 과제에서 실제 고객 상담 음성을 분석하고 학습 데이터로 정제하며, AI가 어떻게 배우고 일하는지를 현장에서 익히고 있습니다. 이 경험을 바탕으로, 그동안 쌓아온 기획·콘텐츠 역량을 AI와 결합하는 방법을 스스로 탐구하고 있습니다.</p></li>
+      <li><span class="d">2025.03 – 2026.07</span><div class="co"><b>BBWW</b><span class="tag">국내 최초 열처리 가공 나무문·가구 주문제작 목공 브랜드</span></div><span class="dept">마케팅</span><span class="rank">과장</span><p>맞춤 제작이라는 낯선 구매 경험을 글로 풀어냈습니다. 카페·음식점·매장처럼 공간을 운영하는 사장님들의 브랜드 니즈를 먼저 짚고, 시공 전 현장과 시공 후 공간을 나란히 보여주며 어디에 변화의 힘을 주었는지 풀어내는 칼럼형 시공 사례로 브랜드 블로그를 운영했습니다. 네이버 검색 노출 로직이 바뀌며 자연 검색만으로는 브랜드가 안정적으로 노출되지 않는 문제가 생기자, 검색광고를 병행해 핵심 키워드에서의 노출을 확보했습니다.</p></li>
+      <li><span class="d">2023.01 – 2025.03</span><div class="co"><b>춘해병원</b><span class="tag">79년 역사의 부산 종합병원</span></div><span class="dept">기획홍보실</span><span class="rank">실장</span><p>병원의 차별점인 다빈치SP 단일공 로봇수술을 브랜드 핵심 메시지로 정하고, 모든 채널을 이 메시지 중심으로 설계했습니다. 보도자료로 공중파·부산일보·국제신문·의학신문 보도를 이끌어 의료 신뢰도를 쌓고, 버스·옥외·지하철 광고로 지역 인지도를 넓혔습니다. 홈페이지·블로그·인스타그램에는 진료과별 의료 칼럼을 실어 검색 유입을 만들고, 외래 리플렛과 원내 사인물까지 환자가 만나는 모든 접점의 메시지를 하나로 맞췄습니다.</p></li>
+      <li><span class="d">2021.04 – 2022.12</span><div class="co"><b>이유사회적협동조합</b><span class="tag">교통약자 이동 플랫폼 사회적기업</span></div><span class="dept">마케팅팀</span><span class="rank">PM</span><p>교통약자 이동권이라는 무거운 주제를 이해관계자가 공감할 수 있는 캠페인으로 풀었습니다. SKT와 추진한 발달장애인 출퇴근 셔틀 ‘착한셔틀’은 규제 샌드박스를 거쳐 전국 정규 사업으로, 부산관광공사와의 DMO 포용관광 프로젝트는 전국 관광공사 평가 2위와 정규 사업 확대로 이어졌습니다. 장애인의 날 저상버스 캠페인을 기획하고, 부울경 대학생 서포터즈 운영, PR·R&amp;D 사업 홍보, 뉴스레터·보도자료 발행, 크라우드펀딩까지 기관 커뮤니케이션 전반을 맡았습니다.</p></li>
+    </ol>
+    <div class="skills">
+      <details class="sk" open><summary><h3>콘텐츠 기획</h3></summary><ul><li>타깃 분석 기반 메시지·스토리라인 설계</li><li>정책 제안·사업 설득을 위한 영상 기획</li><li>지자체·기업·공공기관 협업 콘텐츠 기획</li><li>반려견 동반 행사·프로그램 콘텐츠 기획</li><li>진료과별 의료 칼럼 기획 및 작성</li><li>보도자료·뉴스레터 기획 및 작성</li></ul></details>
+      <details class="sk" open><summary><h3>영상·디자인 제작</h3></summary><ul><li>인터뷰·현장 다큐멘터리 촬영과 편집</li><li>사업 결과·예고편·후기 영상 제작</li><li>의료진 책자·외래 리플렛 디자인</li><li>로봇수술 성과 홍보물·게시물 디자인</li><li>유리창 띠지·실사물 디자인과 시공 기획</li><li>홈페이지 랜딩페이지 기획</li></ul></details>
+      <details class="sk" open><summary><h3>채널·매체 운영</h3></summary><ul><li>네이버 블로그 운영과 검색 최적화(SEO)</li><li>홈페이지·인스타그램 콘텐츠 운영</li><li>공중파·일간지·의학 전문지 언론 대응</li><li>버스·옥외·지하철 광고 집행</li><li>네이버 검색광고 집행</li><li>대학생 서포터즈·크라우드펀딩 운영</li></ul></details>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer><div class="w">
+  <p class="fullline"><span class="l">기획과 촬영·편집, 의료 칼럼과 보도자료,</span> <span class="l">서포터즈 운영과 광고 집행까지.</span> <strong class="l">브랜드가 사람을 만나는 모든 접점을 설계합니다.</strong></p>
+  <div class="sig"><span><b>이연주</b>콘텐츠 마케팅 PM · 부산</span><a href="#top">맨 위로 ↑</a></div>
+</div></footer>
+
+<script>
+(()=>{
+  if(!('IntersectionObserver' in window))return;
+  document.documentElement.classList.add('js');
+  const ease=t=>1-Math.pow(1-t,4);
+  const count=el=>{const m=el.dataset.v.match(/^([^\d]*)([\d,]*\.?\d+)(.*)$/);const raw=m[2].replace(/,/g,''),dec=(raw.split('.')[1]||'').length,end=parseFloat(raw),comma=m[2].includes(',');
+    const t0=performance.now();const step=t=>{const p=Math.min((t-t0)/1500,1);let x=(end*ease(p)).toFixed(dec);if(comma)x=Number(x).toLocaleString('en-US');el.textContent=m[1]+x+m[3];if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)};
+  // 1) numbers: start as soon as their group is well in view, one after another
+  const groups=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;groups.unobserve(e.target);
+    [...e.target.querySelectorAll('b')].forEach((el,i)=>setTimeout(()=>{el.classList.add('in');if(el.dataset.v)count(el)},i*260))}),{rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('.nums b,.k b').forEach(el=>{const v=el.textContent.trim();if(/\d/.test(v)){el.dataset.v=v;el.textContent=v.replace(/\d/g,'0')}else el.classList.add('reveal','num')});
+  document.querySelectorAll('.nums,.k').forEach(g=>groups.observe(g));
+  // 2) bars: slightly later than the numbers
+  const bars=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;bars.unobserve(e.target);setTimeout(()=>e.target.classList.add('in'),350)}),{rootMargin:'0px 0px -18% 0px'});
+  document.querySelectorAll('.bars').forEach(el=>bars.observe(el));
+  // 3) titles: only once they are well into the screen, so they never fire together with the numbers above
+  const titles=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;titles.unobserve(e.target);e.target.classList.add('in')}),{rootMargin:'0px 0px -30% 0px'});
+  document.querySelectorAll('.reveal:not(.num)').forEach(el=>titles.observe(el));
+})();
+</script>
+<script>
+(()=>{const nav=document.querySelector('.pillnav'),links=[...nav.querySelectorAll('a.l')];
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>innerHeight*.6),{passive:true});
+if(!('IntersectionObserver' in window))return;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+['work','hospital','personal','channels','career'].forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});})();
+</script>
+<script>
+(()=>{const m=matchMedia('(max-width:700px)');const set=()=>document.querySelectorAll('.sk').forEach(d=>d.open=!m.matches);set();m.addEventListener('change',set);
+document.querySelectorAll('.sk summary').forEach(su=>su.addEventListener('click',e=>{if(!m.matches)e.preventDefault()}));})();
+</script>
