@@ -284,7 +284,8 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
 /* ===== ver.5 hero: copy left + 2x2 montage ===== */
 .hx2{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:100%;height:100vh;min-height:640px;max-height:1100px;overflow:hidden}
 .hx2 .copy2{display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(16px,4vw,64px) clamp(32px,6vw,80px)}
-.hx2 h1{font:200 clamp(32px,3.8vw,62px)/1.18 var(--display);letter-spacing:-.045em}
+.hx2 h1{font:200 clamp(27px,3.2vw,54px)/1.22 var(--display);letter-spacing:-.045em}
+.hx2 h1 .l{white-space:nowrap}
 .hx2 h1 strong{font-weight:600}
 .proof2{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:10px;font-size:15px;color:#d8d6d0;animation-delay:1.1s}
 .proof2 b{display:inline-block;width:2.4em;font:300 13px var(--display);color:var(--warm);letter-spacing:.04em}
@@ -318,6 +319,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
 @media(max-width:900px){.trio{grid-template-columns:1fr 1fr}.trio .pc{grid-column:1/-1}.duo{grid-template-columns:1fr .45fr}.endrow{grid-template-columns:1fr}.endrow .k{grid-template-columns:1fr 1fr}}
 
 /* ===== ver.5: brand channels ===== */
+#channels .k b{font-size:clamp(30px,3.4vw,52px)}
 #channels{background:#151817;box-shadow:0 0 0 100vmax #151817;clip-path:inset(0 -100vmax);padding-bottom:clamp(96px,12vw,160px)}
 #channels .chapter{padding-top:clamp(64px,8vw,120px)}
 .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;font-size:14px}
@@ -353,7 +355,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
 <header class="hero hx2" id="top">
   <div class="copy2 w2">
     <p class="cap fadein" style="animation-delay:.1s">CONTENT MARKETER · BUSAN</p>
-    <h1><span class="l"><span style="--i:0">캠페인에서</span></span> <span class="l"><span style="--i:1">플랫폼까지,</span></span><br class="d"><span class="l"><span style="--i:2"><strong>직접 만드는</strong> 마케터</span></span></h1>
+    <h1><span class="l"><span style="--i:0">영상은 <strong>사업</strong>이 되고,</span></span><br><span class="l"><span style="--i:1">글은 <strong>검색 1위</strong>가 되고,</span></span><br><span class="l"><span style="--i:2">기획은 <strong>플랫폼</strong>이 됩니다</span></span></h1>
     <ol class="proof2 fadein"><li><b>01</b>정규 사업이 된 영상 3건</li><li><b>02</b>로봇수술 600례 브랜딩</li><li><b>03</b>7주 만에 만든 웨딩 플랫폼</li><li><b>04</b>검색 1위 키워드 7개</li></ol>
   </div>
   <div class="m22">
@@ -564,7 +566,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
       <a href="https://blog.naver.com/tdkorea3/223914205278" target="_blank" rel="noopener"><div class="im"><img src="../img/bbm13.jpg" alt="간살 슬라이딩도어"></div><span>미닫이문, 셀프로 했다가 후회하신다면</span><small>2025.06</small></a>
     </div>
     <div class="txt"><p class="cap">NAVER BLOG · 2025.03 – 2026.07</p><h3>BBWW 네이버 블로그</h3><p>열처리 가공 나무문·가구를 주문 제작하는 목공 브랜드입니다. 카페·음식점·매장 사장님이 무엇을 바꾸고 싶은지 먼저 짚고, 시공 전 현장과 시공 후 공간을 나란히 보여주는 칼럼형 시공 사례로 블로그를 운영했습니다.</p><p>검색 노출 로직이 바뀌며 자연 검색만으로는 노출이 흔들리자, 검색광고를 함께 돌려 핵심 키워드 자리를 지켰습니다.</p>
-      <div class="k" style="grid-template-columns:repeat(3,1fr)"><div><b>348건</b><small>17개월간 기록한 시공 사례</small></div><div><b>200편</b><small>카페·상가 사장님을 위한 글</small></div><div><b>1,972</b><small>독자 공감</small></div></div>
+      <div class="k" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div><b>348건</b><small>17개월간 기록한 시공 사례</small></div><div><b>200편</b><small>카페·상가 사장님을 위한 글</small></div><div><b>1,972</b><small>독자 공감</small></div></div>
       <div class="links"><a href="https://blog.naver.com/tdkorea3" target="_blank" rel="noopener">BBWW 블로그 ↗</a></div></div>
   </article>
 
@@ -573,7 +575,7 @@ footer .sig a{text-decoration:none}footer .sig a:hover{color:var(--ink)}
     <div class="bz-top">
       <div><p class="cap">BLOG · TISTORY · INSTAGRAM · 2026.10 –</p><h3 style="font:300 clamp(24px,2.6vw,36px)/1.25 var(--display);letter-spacing:-.035em">(주)부산건축자재합판목재도매</h3><p style="margin-top:16px;color:var(--body);max-width:44em">200평 창고형 목재·합판 도매 업체의 네이버 블로그·티스토리·인스타그램을 운영합니다. 키워드마다 상위 글을 비교해 원고를 쓰고, 표지 카드를 직접 디자인하고, CNC 가공·재단 장면으로 릴스와 카드뉴스를 만듭니다. 올린 다음 날엔 채널별 노출을 확인해 보고합니다.</p>
         <div class="links"><a href="https://blog.naver.com/tdkorea6" target="_blank" rel="noopener">네이버 블로그 ↗</a><a href="https://www.instagram.com/bbww_wood_official/" target="_blank" rel="noopener">인스타그램 ↗</a><a href="https://bbww-wood.vercel.app" target="_blank" rel="noopener">홈페이지 ↗</a></div></div>
-      <div class="k" style="grid-template-columns:repeat(3,1fr)"><div><b>7개</b><small>네이버 통합검색 블로그 1위 키워드</small></div><div><b>26개</b><small>노린 47개 중 통합검색 노출 (첫 2주)</small></div><div><b>하루</b><small>발행 다음 날 통합 1위 (칼라MDF·부산CNC)</small></div></div>
+      <div class="k" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div><b>7개</b><small>네이버 통합검색 블로그 1위 키워드</small></div><div><b>26개</b><small>노린 47개 중 통합검색 노출 (첫 2주)</small></div><div><b>하루</b><small>발행 다음 날 통합 1위 (칼라MDF·부산CNC)</small></div></div>
     </div>
     <div class="covers" style="margin-top:40px">
       <a href="https://blog.naver.com/tdkorea6/224441516267" target="_blank" rel="noopener"><img src="../img/bzm1.jpg" alt="원형타공 글 표지"></a>
